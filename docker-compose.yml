@@ -4,7 +4,11 @@ services:
   pix-core:
     container_name: pix-core
     image: pix-core
-    build: source/pixcore
+    build:
+      context: source
+      dockerfile: pixcore/Dockerfile
+    volumes:
+      - ./source/packages:/packages
     ports:
       - '8080:8080'
 

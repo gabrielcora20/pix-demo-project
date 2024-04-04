@@ -1,5 +1,6 @@
 package com.gabrielcora.pixcore.payment.domain.commands.handlers
 
+import com.gabrielcora.cqrspackage.domain.commands.handlers.CommandHandler
 import com.gabrielcora.pixcore.payment.domain.commands.RegisterNewPaymentCommand
 import com.gabrielcora.pixcore.payment.domain.commands.results.RegisterNewPaymentCommandResult
 import com.gabrielcora.pixcore.payment.domain.models.Payment

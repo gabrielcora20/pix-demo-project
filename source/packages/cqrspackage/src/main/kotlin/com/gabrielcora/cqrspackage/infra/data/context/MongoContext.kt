@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component
 import java.lang.System.gc
 
 @Component
-class MongoContext @Autowired constructor(
+class MongoContext(
     private val eventBus: EventBus,
     override val db: MongoTemplate
 ) : IMongoContext {
