@@ -1,0 +1,74 @@
+version: '3'
+
+services:
+  pix-core:
+    container_name: pix-core
+    image: pix-core
+    build: source/pixcore
+    ports:
+      - '8080:8080'
+
+  mongo:
+    container_name: mongo
+    image: mongo:7.0
+    command: mongod --bind_ip_all --port 27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=pix
+      - MONGO_INITDB_ROOT_PASSWORD=N5Hn3cHgeP27JGlt7g4ASy6O8zXLNm228sjKxEn8
+      - "TZ=America/Sao_Paulo"
+    ports:
+      - 27017:27017
+    volumes:
+      - ./volumes/mongodb/data:/data/db
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 20s
+        window: 120s
+    logging:
+      driver: loki
+      options:
+        loki-url: http://localhost:3100/loki/api/v1/push
+
+  loki:
+    image: grafana/loki:2.7.3
+    container_name: loki
+    ports:
+      - "3100:3100"
+    entrypoint:
+      - /usr/bin/loki
+      - -config.file=/etc/loki/loki-local.yaml
+    environment:
+      - "TZ=America/Sao_Paulo"
+    volumes:
+      - ./configuration/loki/loki.yaml:/etc/loki/loki-local.yaml
+      - ./volumes/loki:/tmp/loki
+
+  grafana:
+    image: grafana
+    container_name: grafana
+    restart: always
+    build: configuration/grafana
+    volumes:
+      - ./volumes/grafana:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=pix
+      - GF_SECURITY_ADMIN_PASSWORD=bj0uIVfZAj7O5y94gC1yVPStPfw5xFxQpburWjvUIgnYeFxs7L
+      - "TZ=America/Sao_Paulo"
+    ports:
+      - "3000:3000"
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        window: 120s
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+    volumes:
+      - ./configuration/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
