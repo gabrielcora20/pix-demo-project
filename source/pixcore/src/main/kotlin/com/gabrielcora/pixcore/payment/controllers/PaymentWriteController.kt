@@ -1,21 +1,17 @@
 package com.gabrielcora.pixcore.payment.controllers
 
 import com.gabrielcora.pixcore.payment.application.dto.RegisterPaymentDTO
-import com.gabrielcora.pixcore.payment.application.dto.PartiallyUpdatePaymentDTO
-import com.gabrielcora.pixcore.payment.application.dto.PaymentDTO
 import com.gabrielcora.pixcore.payment.application.dto.UpdatePaymentDTO
 import com.gabrielcora.pixcore.payment.application.services.interfaces.IPaymentWriteAppService
-import com.gabrielcora.pixcore.payment.domain.commands.results.PartiallyUpdatePaymentCommandResult
+import com.gabrielcora.pixcore.payment.domain.commands.results.PatchPaymentCommandResult
 import com.gabrielcora.pixcore.payment.domain.commands.results.RegisterNewPaymentCommandResult
 import com.gabrielcora.pixcore.payment.domain.commands.results.UpdatePaymentCommandResult
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.responses.ApiResponses
-import org.bson.types.ObjectId
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import java.util.*
 
 @RestController
 @RequestMapping("payment")
@@ -43,7 +39,7 @@ class PaymentWriteController @Autowired constructor(paymentWriteAppService: IPay
 
     @ResponseBody
     @PatchMapping("/{id}")
-    suspend fun patch(@PathVariable id: String, @RequestBody req: PartiallyUpdatePaymentDTO): ResponseEntity<PartiallyUpdatePaymentCommandResult> {
-        return ResponseEntity.ok(_paymentWriteAppService.partiallyUpdate(id, req))
+    suspend fun patch(@PathVariable id: String, @RequestBody req: Map<String, Any>): ResponseEntity<PatchPaymentCommandResult> {
+        return ResponseEntity.ok(_paymentWriteAppService.patch(id, req))
     }
 }

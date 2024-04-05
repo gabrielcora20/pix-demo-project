@@ -2,7 +2,7 @@ package com.gabrielcora.pixcore.payment.application.dto
 
 import java.util.*
 
-data class PartiallyUpdatePaymentDTO(
+data class PatchPaymentDTO(
     val status: Int,
     val dataInclusao: Date,
     val dataPagamento: Date,

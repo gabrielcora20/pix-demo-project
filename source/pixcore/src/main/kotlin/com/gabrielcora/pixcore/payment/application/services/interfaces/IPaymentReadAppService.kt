@@ -1,6 +1,8 @@
 package com.gabrielcora.pixcore.payment.application.services.interfaces
 
+import com.gabrielcora.pixcore.payment.domain.models.Payment
+
 interface IPaymentReadAppService {
-    fun getAll()
-    fun getById(id: String)
+    suspend fun getAll()
+    suspend fun getById(id: String): Payment?
 }
