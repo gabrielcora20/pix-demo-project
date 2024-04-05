@@ -1,11 +1,14 @@
 package com.gabrielcora.pixcore.payment.application.services;
 
+import com.gabrielcora.pixcore.payment.application.dto.PatchPaymentDTO
 import com.gabrielcora.pixcore.payment.application.dto.RegisterPaymentDTO;
 import com.gabrielcora.pixcore.payment.application.dto.UpdatePaymentDTO;
 import com.gabrielcora.pixcore.payment.application.services.interfaces.IPaymentWriteAppService;
+import com.gabrielcora.pixcore.payment.domain.commands.DeletePaymentCommand
 import com.gabrielcora.pixcore.payment.domain.commands.PatchPaymentCommand
 import com.gabrielcora.pixcore.payment.domain.commands.RegisterNewPaymentCommand
 import com.gabrielcora.pixcore.payment.domain.commands.UpdatePaymentCommand
+import com.gabrielcora.pixcore.payment.domain.commands.results.DeletePaymentCommandResult
 import com.gabrielcora.pixcore.payment.domain.commands.results.PatchPaymentCommandResult
 import com.gabrielcora.pixcore.payment.domain.commands.results.RegisterNewPaymentCommandResult
 import com.gabrielcora.pixcore.payment.domain.commands.results.UpdatePaymentCommandResult
@@ -19,13 +22,11 @@ class PaymentWriteAppService @Autowired constructor(private val commandHandler: 
     override suspend fun register(payment: RegisterPaymentDTO): RegisterNewPaymentCommandResult {
         return commandHandler.handleRegisterNewPayment(
             RegisterNewPaymentCommand(
-                payment.status,
-                payment.dataInclusao,
-                payment.dataPagamento,
-                payment.valorPagamento,
-                payment.descricaoPagamento,
-                payment.dadosRecorrencia,
-                payment.destinoPagamento
+                payment.paymentDate,
+                payment.value,
+                payment.description,
+                payment.recurrence,
+                payment.destination
             )
         )
     }
@@ -34,23 +35,27 @@ class PaymentWriteAppService @Autowired constructor(private val commandHandler: 
         return commandHandler.handleUpdatePayment(
             UpdatePaymentCommand(
                 id,
-                payment.status,
-                payment.dataInclusao,
-                payment.dataPagamento,
-                payment.valorPagamento,
-                payment.descricaoPagamento,
-                payment.dadosRecorrencia,
-                payment.destinoPagamento
+                payment.paymentDate,
+                payment.value,
+                payment.description,
+                payment.recurrence,
+                payment.destination
             )
         )
     }
 
-    override suspend fun patch(id: String, payment: Map<String, Any>): PatchPaymentCommandResult {
+    override suspend fun patch(id: String, payment: PatchPaymentDTO): PatchPaymentCommandResult {
         return commandHandler.handlePatchPayment(
             PatchPaymentCommand(
                 id,
                 payment
             )
+        )
+    }
+
+    override suspend fun delete(id: String): DeletePaymentCommandResult {
+        return commandHandler.handleDeletePayment(
+            DeletePaymentCommand(id)
         )
     }
 }

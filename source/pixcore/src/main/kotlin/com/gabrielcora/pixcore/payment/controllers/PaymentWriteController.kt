@@ -1,8 +1,10 @@
 package com.gabrielcora.pixcore.payment.controllers
 
+import com.gabrielcora.pixcore.payment.application.dto.PatchPaymentDTO
 import com.gabrielcora.pixcore.payment.application.dto.RegisterPaymentDTO
 import com.gabrielcora.pixcore.payment.application.dto.UpdatePaymentDTO
 import com.gabrielcora.pixcore.payment.application.services.interfaces.IPaymentWriteAppService
+import com.gabrielcora.pixcore.payment.domain.commands.results.DeletePaymentCommandResult
 import com.gabrielcora.pixcore.payment.domain.commands.results.PatchPaymentCommandResult
 import com.gabrielcora.pixcore.payment.domain.commands.results.RegisterNewPaymentCommandResult
 import com.gabrielcora.pixcore.payment.domain.commands.results.UpdatePaymentCommandResult
@@ -39,7 +41,13 @@ class PaymentWriteController @Autowired constructor(paymentWriteAppService: IPay
 
     @ResponseBody
     @PatchMapping("/{id}")
-    suspend fun patch(@PathVariable id: String, @RequestBody req: Map<String, Any>): ResponseEntity<PatchPaymentCommandResult> {
+    suspend fun patch(@PathVariable id: String, @RequestBody req: PatchPaymentDTO): ResponseEntity<PatchPaymentCommandResult> {
         return ResponseEntity.ok(_paymentWriteAppService.patch(id, req))
+    }
+
+    @ResponseBody
+    @DeleteMapping("/{id}")
+    suspend fun delete(@PathVariable id: String): ResponseEntity<DeletePaymentCommandResult> {
+        return ResponseEntity.ok(_paymentWriteAppService.delete(id))
     }
 }

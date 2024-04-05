@@ -13,13 +13,19 @@ import java.util.*
 class PaymentReadController @Autowired constructor(private val paymentReadAppService: IPaymentReadAppService) {
     @ResponseBody
     @GetMapping
-    suspend fun get(): ResponseEntity<Iterable<PaymentDTO>> {
-        this.paymentReadAppService.getAll()
-        return ResponseEntity.ok(listOf(PaymentDTO("1", 1, Date(), Date(), 1.100, "Descrição Teste", "", "Joãozinho"), PaymentDTO("2", 1, Date(), Date(), 1.400, "Descrição Teste secundária", "", "Romário")))
+    suspend fun getAll(): ResponseEntity<Iterable<Payment?>> {
+        return ResponseEntity.ok(this.paymentReadAppService.getAll())
     }
+
     @ResponseBody
-    @GetMapping("/{id}")
-    suspend fun getById(@PathVariable id: String): ResponseEntity<Payment?> {
-        return ResponseEntity.ok(paymentReadAppService.getById(id))
+    @GetMapping("effect")
+    suspend fun getEffectedPayments(): ResponseEntity<Iterable<Payment?>> {
+        return ResponseEntity.ok(this.paymentReadAppService.getEffected())
+    }
+
+    @ResponseBody
+    @GetMapping("scheduled")
+    suspend fun getScheduledPayments(): ResponseEntity<Iterable<Payment?>> {
+        return ResponseEntity.ok(this.paymentReadAppService.getScheduled())
     }
 }

@@ -1,7 +1,6 @@
 package com.gabrielcora.pixcore.payment.domain.events.handlers
 
-import com.gabrielcora.cqrspackage.domain.events.Event
-import com.gabrielcora.pixcore.payment.infra.crosscutting.bus.notations.PaymentEventListener
+import com.gabrielcora.pixcore.payment.infra.crosscutting.bus.anotations.PaymentEventListener
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component

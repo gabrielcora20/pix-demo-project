@@ -1,4 +1,4 @@
-package com.gabrielcora.pixcore.payment.infra.crosscutting.bus.notations
+package com.gabrielcora.pixcore.payment.infra.crosscutting.bus.anotations
 
 import org.springframework.context.event.EventListener
 import org.springframework.scheduling.annotation.Async

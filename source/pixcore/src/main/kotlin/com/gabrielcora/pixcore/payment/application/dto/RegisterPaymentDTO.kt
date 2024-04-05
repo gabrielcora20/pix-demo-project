@@ -6,17 +6,13 @@ import java.util.*
 @Schema(description = "Informações do pagamento a ser cadastrado.")
 data class RegisterPaymentDTO(
     @field:Schema(
-        description = "O status do pagamento",
-        example = "1",
-        type = "int",
-        minimum = "0",
-        maximum = "2"
+        description = "A data do pagamento",
+        example = "2024-04-05T13:57:42.967Z",
+        type = "date",
     )
-    val status: Int,
-    val dataInclusao: Date,
-    val dataPagamento: Date,
-    val valorPagamento: Double,
-    val descricaoPagamento: String,
-    val dadosRecorrencia: String,
-    val destinoPagamento: String,
+    val paymentDate: Date,
+    val value: Double,
+    val description: String,
+    val recurrence: String,
+    val destination: String,
 )
