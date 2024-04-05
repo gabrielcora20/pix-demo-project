@@ -1,12 +1,12 @@
 version: '3'
 
 services:
-  pix-core:
-    container_name: pix-core
-    image: pix-core
+  presentation:
+    container_name: presentation
+    image: presentation
     build:
       context: source
-      dockerfile: pixcore/Dockerfile
+      dockerfile: presentation/Dockerfile
     volumes:
       - ./source/packages:/packages
     ports:
