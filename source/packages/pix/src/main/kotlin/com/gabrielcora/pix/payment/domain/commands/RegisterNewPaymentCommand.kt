@@ -8,5 +8,5 @@ data class RegisterNewPaymentCommand(
     val value: Double,
     val description: String,
     val recurrence: String,
-    val destination: String,
-): Command<RegisterNewPaymentCommandResult>
+    val pixKey: String,
+) : Command<RegisterNewPaymentCommandResult>

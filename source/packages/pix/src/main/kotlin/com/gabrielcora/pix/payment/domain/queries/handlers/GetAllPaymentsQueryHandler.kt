@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component
 
 @Component
 class GetAllPaymentsQueryHandler(
-    val paymentReadRepository: IPaymentReadRepository
+    val paymentReadRepository: IPaymentReadRepository,
 ) : QueryHandler<Iterable<Payment>, GetAllPaymentsQuery>() {
     override suspend fun handle(query: GetAllPaymentsQuery): Iterable<Payment> {
         return paymentReadRepository.findAll()

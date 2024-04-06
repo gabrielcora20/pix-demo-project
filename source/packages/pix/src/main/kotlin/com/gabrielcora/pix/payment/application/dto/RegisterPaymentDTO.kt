@@ -16,5 +16,5 @@ data class RegisterPaymentDTO(
     val value: Double,
     val description: String,
     val recurrence: String,
-    val destination: String,
+    val pixKey: String,
 )

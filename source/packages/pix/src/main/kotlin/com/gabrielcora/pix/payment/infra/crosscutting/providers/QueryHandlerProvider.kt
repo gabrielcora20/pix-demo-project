@@ -9,10 +9,11 @@ import org.springframework.context.ApplicationContext
 import org.springframework.stereotype.Component
 
 @Component
-class QueryHandlerProvider (private val applicationContext: ApplicationContext) {
+class QueryHandlerProvider(private val applicationContext: ApplicationContext) {
     suspend fun handleGetAllPayments(query: GetAllPaymentsQuery): Iterable<Payment> {
         return applicationContext.getBean(GetAllPaymentsQueryHandler::class.java).handle(query)
     }
+
     suspend fun handleGetPaymentsByStatus(query: GetPaymentsByStatusQuery): Iterable<Payment> {
         return applicationContext.getBean(GetPaymentsByStatusQueryHandler::class.java).handle(query)
     }

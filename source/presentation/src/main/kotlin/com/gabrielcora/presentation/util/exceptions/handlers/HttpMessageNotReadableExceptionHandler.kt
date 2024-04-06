@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice
 class HttpMessageNotReadableExceptionHandler {
     @ExceptionHandler(HttpMessageNotReadableException::class)
     fun handleHttpMessageNotReadable(ex: HttpMessageNotReadableException): ResponseEntity<Any> {
-        return ResponseEntity(ExceptionResponse("Não foi possivel serializar o json recebido. Por favor, verifique se os campos estão sendo enviados corretamente."), HttpStatus.BAD_REQUEST)
+        return ResponseEntity(ExceptionResponse("Não foi possivel serializar o json recebido. Por favor, dertifique-se de enviar valores não nulos todos os campos obrigatórios."), HttpStatus.BAD_REQUEST)
     }
 }

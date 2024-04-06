@@ -9,4 +9,5 @@ interface IPaymentReadRepository {
     suspend fun findById(id: String): Payment?
     suspend fun findAll(): Iterable<Payment>
     suspend fun findByStatus(status: StatusEnum): Iterable<Payment>
+    suspend fun findSimilarPayments(payment: Payment): Iterable<Payment>
 }

@@ -1,4 +1,4 @@
-package com.gabrielcora.pix.payment.infra.data.interfaces
+package com.gabrielcora.pix.payment.domain.interfaces
 
 interface IUnitOfWork {
     suspend fun commit(): Boolean

@@ -1,9 +1,9 @@
-package com.gabrielcora.pix.payment.application.services;
+package com.gabrielcora.pix.payment.application.services
 
 import com.gabrielcora.pix.payment.application.dto.PatchPaymentDTO
-import com.gabrielcora.pix.payment.application.dto.RegisterPaymentDTO;
-import com.gabrielcora.pix.payment.application.dto.UpdatePaymentDTO;
-import com.gabrielcora.pix.payment.application.services.interfaces.IPaymentWriteAppService;
+import com.gabrielcora.pix.payment.application.dto.RegisterPaymentDTO
+import com.gabrielcora.pix.payment.application.dto.UpdatePaymentDTO
+import com.gabrielcora.pix.payment.application.services.interfaces.IPaymentWriteAppService
 import com.gabrielcora.pix.payment.domain.commands.DeletePaymentCommand
 import com.gabrielcora.pix.payment.domain.commands.PatchPaymentCommand
 import com.gabrielcora.pix.payment.domain.commands.RegisterNewPaymentCommand
@@ -14,10 +14,11 @@ import com.gabrielcora.pix.payment.domain.commands.results.RegisterNewPaymentCom
 import com.gabrielcora.pix.payment.domain.commands.results.UpdatePaymentCommandResult
 import com.gabrielcora.pix.payment.infra.crosscutting.providers.CommandHandlerProvider
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Service
 
 @Service
-class PaymentWriteAppService @Autowired constructor(private val commandHandler: CommandHandlerProvider) : IPaymentWriteAppService {
+class PaymentWriteAppService @Autowired constructor(private val commandHandler: CommandHandlerProvider) :
+    IPaymentWriteAppService {
 
     override suspend fun register(payment: RegisterPaymentDTO): RegisterNewPaymentCommandResult {
         return commandHandler.handleRegisterNewPayment(
@@ -26,7 +27,7 @@ class PaymentWriteAppService @Autowired constructor(private val commandHandler: 
                 payment.value,
                 payment.description,
                 payment.recurrence,
-                payment.destination
+                payment.pixKey
             )
         )
     }
@@ -39,7 +40,7 @@ class PaymentWriteAppService @Autowired constructor(private val commandHandler: 
                 payment.value,
                 payment.description,
                 payment.recurrence,
-                payment.destination
+                payment.pixKey
             )
         )
     }

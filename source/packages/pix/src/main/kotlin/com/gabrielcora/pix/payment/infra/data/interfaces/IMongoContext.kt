@@ -1,5 +1,6 @@
 package com.gabrielcora.pix.payment.infra.data.interfaces
 
+import com.gabrielcora.pix.payment.domain.interfaces.IUnitOfWork
 import com.gabrielcora.pix.payment.domain.models.DomainEntity
 import org.springframework.data.mongodb.core.MongoTemplate
 

@@ -1,8 +1,8 @@
 package com.gabrielcora.pix.payment.domain.models.enums
 
-enum class TypePixKeyEnum {
+enum class PixKeyTypeEnum {
     CPF,
     EMAIL,
-    TELEFONE,
-    ALEATORIA
+    PHONE,
+    RANDOM
 }

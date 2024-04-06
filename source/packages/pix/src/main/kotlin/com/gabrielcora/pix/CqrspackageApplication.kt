@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class PixApplication
 
 fun main(args: Array<String>) {
-	runApplication<PixApplication>(*args)
+    runApplication<PixApplication>(*args)
 }

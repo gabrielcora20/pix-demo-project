@@ -6,4 +6,4 @@ import com.gabrielcora.pix.payment.domain.commands.results.PatchPaymentCommandRe
 data class PatchPaymentCommand(
     val id: String,
     val payment: PatchPaymentDTO,
-): Command<PatchPaymentCommandResult>
+) : Command<PatchPaymentCommandResult>

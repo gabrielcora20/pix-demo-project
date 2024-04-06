@@ -8,7 +8,7 @@ import org.bson.types.ObjectId
 import org.springframework.data.annotation.Id
 import org.springframework.data.annotation.Transient
 
-abstract class DomainEntity() {
+abstract class DomainEntity {
 
     @Id
     @ShouldNotBePatched
@@ -23,7 +23,7 @@ abstract class DomainEntity() {
         return events
     }
 
-    protected fun raise(event: Event) {
+    fun raise(event: Event) {
         occurredEvents.add(event)
     }
 
@@ -42,7 +42,7 @@ abstract class DomainEntity() {
             .toHashCode()
     }
 
-    fun getId(): String{
+    fun getId(): String {
         return id.toString()
     }
 }

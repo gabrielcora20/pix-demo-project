@@ -6,23 +6,24 @@ import org.springframework.beans.BeanUtils
 import org.springframework.stereotype.Component
 
 @Component
-class ObjectMergeHelperHandler: ObjectMergeHelper {
+class ObjectMergeHelperHandler : ObjectMergeHelper {
     override fun <T> merge(source: T, updates: Map<String, Any?>): T {
         for ((key, value) in updates) {
-            if (BeanUtils.getPropertyDescriptor(source!!::class.java, key) != null) {
-                try {
-                    val field = source!!::class.java.getDeclaredField(key)
-                    field.isAccessible = true
+            if (BeanUtils.getPropertyDescriptor(source!!::class.java, key) == null)
+                throw NoSuchFieldException("O campo '$key' não existe")
 
-                    if(shouldNotBePatched(source!!::class.java, key))
-                        throw IllegalArgumentException("Não é permitido realizar uma alteração no campo '$key'")
+            try {
+                val field = source!!::class.java.getDeclaredField(key)
+                field.isAccessible = true
 
-                    if (value != null && field.type != value.javaClass)
-                        throw IllegalArgumentException("O tipo do valor enviado no campo '$key' está incorreto")
+                if (shouldNotBePatched(source!!::class.java, key))
+                    throw IllegalArgumentException("Não é permitido realizar uma alteração no campo '$key'")
 
-                    field.set(source, value)
-                } catch (_: NoSuchFieldException) {}
-            }
+                if (value != null && field.type != value.javaClass)
+                    throw TypeCastException("O tipo do valor enviado no campo '$key' está incorreto")
+
+                field.set(source, value)
+            } catch (_: NoSuchFieldException) {}
         }
         return source
     }

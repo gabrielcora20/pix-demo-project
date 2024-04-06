@@ -1,3 +1,3 @@
 package com.gabrielcora.pix.payment.domain.commands.results
 
-class PatchPaymentCommandResult(val success: Boolean)
+class PatchPaymentCommandResult(val success: Boolean, val warnings: Iterable<String>? = null)

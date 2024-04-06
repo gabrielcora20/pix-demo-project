@@ -4,7 +4,10 @@ import com.gabrielcora.pix.payment.domain.events.Event
 import com.gabrielcora.pix.payment.domain.models.DomainEntity
 import com.gabrielcora.pix.payment.infra.crosscutting.bus.interfaces.EventBus
 import com.gabrielcora.pix.payment.infra.data.interfaces.IMongoContext
-import kotlinx.coroutines.*
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.runBlocking
 import org.slf4j.LoggerFactory
 import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.stereotype.Component
@@ -13,7 +16,7 @@ import java.lang.System.gc
 @Component
 class MongoContext(
     private val eventBus: EventBus,
-    override val db: MongoTemplate
+    override val db: MongoTemplate,
 ) : IMongoContext {
     private val logger = LoggerFactory.getLogger(javaClass)
     private val domainCommands = mutableListOf<DomainCommand>()
@@ -62,6 +65,6 @@ class MongoContext(
     }
 
     override suspend fun commit(): Boolean {
-        return saveChanges() > 0;
+        return saveChanges() > 0
     }
 }

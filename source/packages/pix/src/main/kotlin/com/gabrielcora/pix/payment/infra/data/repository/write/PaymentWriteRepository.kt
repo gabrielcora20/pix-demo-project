@@ -1,9 +1,9 @@
 package com.gabrielcora.pix.payment.infra.data.repository.write
 
-import com.gabrielcora.pix.payment.infra.data.interfaces.IMongoContext
-import com.gabrielcora.pix.payment.infra.data.interfaces.IUnitOfWork
-import com.gabrielcora.pix.payment.domain.models.Payment
+import com.gabrielcora.pix.payment.domain.interfaces.IUnitOfWork
 import com.gabrielcora.pix.payment.domain.interfaces.repository.write.IPaymentWriteRepository
+import com.gabrielcora.pix.payment.domain.models.Payment
+import com.gabrielcora.pix.payment.infra.data.interfaces.IMongoContext
 import kotlinx.coroutines.runBlocking
 import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.stereotype.Repository

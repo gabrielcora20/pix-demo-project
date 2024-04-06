@@ -9,5 +9,5 @@ data class UpdatePaymentCommand(
     val value: Double,
     val description: String,
     val recurrence: String,
-    val destination: String,
-): Command<UpdatePaymentCommandResult>
+    val pixKey: String,
+) : Command<UpdatePaymentCommandResult>
