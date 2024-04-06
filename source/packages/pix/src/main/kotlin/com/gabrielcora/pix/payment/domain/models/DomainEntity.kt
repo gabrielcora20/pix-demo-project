@@ -1,6 +1,7 @@
 package com.gabrielcora.pix.payment.domain.models
 
 import com.gabrielcora.pix.payment.domain.events.Event
+import com.gabrielcora.pix.payment.domain.models.anotations.ShouldNotBePatched
 import org.apache.commons.lang3.builder.EqualsBuilder
 import org.apache.commons.lang3.builder.HashCodeBuilder
 import org.bson.types.ObjectId
@@ -10,6 +11,7 @@ import org.springframework.data.annotation.Transient
 abstract class DomainEntity() {
 
     @Id
+    @ShouldNotBePatched
     var id: ObjectId? = null
 
     @Transient

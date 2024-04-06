@@ -7,7 +7,7 @@ data class PaymentDTO(
     val id: String,
     val status: StatusEnum,
     val inclusionDate: Date,
-    val paymentDate: Date,
+    val paymentDate: Date?,
     val value: Double,
     val description: String,
     val recurrence: String,

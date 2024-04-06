@@ -5,7 +5,7 @@ import java.util.*
 
 data class UpdatePaymentCommand(
     val id: String,
-    val paymentDate: Date,
+    val paymentDate: Date?,
     val value: Double,
     val description: String,
     val recurrence: String,

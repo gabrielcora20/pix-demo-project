@@ -1,16 +1,16 @@
 version: '3'
 
 services:
-  presentation:
-    container_name: presentation
-    image: presentation
-    build:
-      context: source
-      dockerfile: presentation/Dockerfile
-    volumes:
-      - ./source/packages:/packages
-    ports:
-      - '8080:8080'
+  #presentation:
+  #  container_name: presentation
+  #  image: presentation
+  #  build:
+  #    context: source
+  #    dockerfile: presentation/Dockerfile
+  #  volumes:
+  #    - ./source/packages:/packages
+  #  ports:
+  #    - '8080:8080'
 
   mongo:
     container_name: mongo
@@ -65,6 +65,7 @@ services:
         window: 120s
 
   otel-collector:
+    container_name: otel-collector
     image: otel/opentelemetry-collector-contrib
     restart: always
     command:
@@ -81,6 +82,7 @@ services:
       - "55679:55679" # zpages extension
 
   tempo:
+    container_name: tempo
     image: grafana/tempo
     command: [ "-config.file=/etc/tempo.yaml" ]
     volumes:
@@ -93,6 +95,7 @@ services:
       - "TZ=America/Sao_Paulo"
 
   prometheus:
+    container_name: prometheus
     image: prom/prometheus
     command:
       - --enable-feature=exemplar-storage

@@ -11,9 +11,17 @@ import com.gabrielcora.pix.payment.domain.commands.results.UpdatePaymentCommandR
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.responses.ApiResponses
+import jakarta.validation.Valid
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpHeaders
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.validation.BindingResult
+import org.springframework.validation.FieldError
+import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.*
+import org.springframework.web.context.request.WebRequest
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
 
 @RestController
 @RequestMapping("payment")
@@ -29,25 +37,25 @@ class PaymentWriteController @Autowired constructor(paymentWriteAppService: IPay
     )
     @ResponseBody
     @PostMapping
-    suspend fun post(@RequestBody req: RegisterPaymentDTO): ResponseEntity<RegisterNewPaymentCommandResult> {
+    suspend fun post(@Valid @RequestBody req: RegisterPaymentDTO): ResponseEntity<Any> {
         return ResponseEntity.ok(_paymentWriteAppService.register(req))
     }
 
     @ResponseBody
     @PutMapping("/{id}")
-    suspend fun put(@PathVariable id: String, @RequestBody req: UpdatePaymentDTO): ResponseEntity<UpdatePaymentCommandResult> {
+    suspend fun put(@Valid @PathVariable id: String, @RequestBody req: UpdatePaymentDTO): ResponseEntity<UpdatePaymentCommandResult> {
         return ResponseEntity.ok(_paymentWriteAppService.update(id, req))
     }
 
     @ResponseBody
     @PatchMapping("/{id}")
-    suspend fun patch(@PathVariable id: String, @RequestBody req: PatchPaymentDTO): ResponseEntity<PatchPaymentCommandResult> {
+    suspend fun patch(@Valid @PathVariable id: String, @RequestBody req: PatchPaymentDTO): ResponseEntity<PatchPaymentCommandResult> {
         return ResponseEntity.ok(_paymentWriteAppService.patch(id, req))
     }
 
     @ResponseBody
     @DeleteMapping("/{id}")
-    suspend fun delete(@PathVariable id: String): ResponseEntity<DeletePaymentCommandResult> {
+    suspend fun delete(@Valid @PathVariable id: String): ResponseEntity<DeletePaymentCommandResult> {
         return ResponseEntity.ok(_paymentWriteAppService.delete(id))
     }
 }
