@@ -3554,8 +3554,8 @@
         "allValue": null,
         "current": {
           "selected": false,
-          "text": "host.docker.internal:8080",
-          "value": "host.docker.internal:8080"
+          "text": "presentation:8080",
+          "value": "presentation:8080"
         },
         "datasource": "Prometheus",
         "definition": "",
