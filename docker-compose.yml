@@ -1,16 +1,14 @@
 version: '3'
 
 services:
-  presentation:
-    container_name: presentation
+  presentation-primary:
+    container_name: presentation-primary
     image: presentation
     build:
       context: source
       dockerfile: presentation/Dockerfile
     volumes:
       - ./source/packages:/packages
-    ports:
-      - '8080:8080'
     depends_on:
       - rabbitmq
       - otel-collector
@@ -20,6 +18,73 @@ services:
         condition: on-failure
         delay: 5s
         window: 120s
+
+  presentation-secondary:
+    container_name: presentation-secondary
+    image: presentation
+    build:
+      context: source
+      dockerfile: presentation/Dockerfile
+    volumes:
+      - ./source/packages:/packages
+    depends_on:
+      - rabbitmq
+      - otel-collector
+      - mongo
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        window: 120s
+
+  presentation-tertiary:
+    container_name: presentation-tertiary
+    image: presentation
+    build:
+      context: source
+      dockerfile: presentation/Dockerfile
+    volumes:
+      - ./source/packages:/packages
+    depends_on:
+      - rabbitmq
+      - otel-collector
+      - mongo
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        window: 120s
+
+  presentation-quaternary:
+    container_name: presentation-quaternary
+    image: presentation
+    build:
+      context: source
+      dockerfile: presentation/Dockerfile
+    volumes:
+      - ./source/packages:/packages
+    depends_on:
+      - rabbitmq
+      - otel-collector
+      - mongo
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        window: 120s
+
+  nginx:
+    image: nginx
+    container_name: presentation
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./source/presentation/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - presentation-primary
+      - presentation-secondary
+      - presentation-tertiary
+      - presentation-quaternary
 
   listener:
     container_name: listener
