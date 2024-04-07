@@ -56,7 +56,13 @@ dependencies {
 	implementation("org.springframework:spring-context:6.1.5")
 
 	implementation(project(":pix"))
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	// https://mvnrepository.com/artifact/org.mockito/mockito-core
+	testImplementation("org.mockito:mockito-core:5.11.0")
+	// https://mvnrepository.com/artifact/junit/junit
+	testImplementation("junit:junit:4.13.2")
+	testImplementation("io.github.hakky54:logcaptor:2.9.2")
 }
 
 tasks.withType<KotlinCompile> {

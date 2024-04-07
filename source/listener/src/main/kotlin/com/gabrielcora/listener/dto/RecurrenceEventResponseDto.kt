@@ -6,10 +6,6 @@ import jakarta.validation.constraints.NotNull
 import java.time.LocalDateTime
 
 data class RecurrenceEventResponseDto(
-    @field:NotNull(message = "A data de término da recorrência não pode ser nula")
     val endDate: LocalDateTime?,
-
-    @field:NotBlank(message = "A frequencia da recorrência não pode estar vazia")
-    @field:NotNull(message = "A frequencia da recorrência não pode ser nula")
     val frequencyType: FrequencyTypeEnum?,
 )

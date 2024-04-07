@@ -9,7 +9,6 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener
 @Component
 class PaymentChangedEventListener {
     private val logger: Logger = LoggerFactory.getLogger(PaymentChangedEventListener::class.java)
-
     @RabbitListener(queues = ["processpaymentrecurrencechangeddo"])
     fun handlePaymentRecurrenceChanged(message: PaymentEventResponseDto) {
         logger.info("executing handlePaymentRecurrenceChanged")

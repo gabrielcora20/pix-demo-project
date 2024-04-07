@@ -13,6 +13,13 @@ services:
       - '8080:8080'
     depends_on:
       - rabbitmq
+      - otel-collector
+      - mongo
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        window: 120s
 
   listener:
     container_name: listener
@@ -26,6 +33,11 @@ services:
       - '8090:8090'
     depends_on:
       - rabbitmq
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        window: 120s
 
   mongo:
     container_name: mongo
@@ -59,6 +71,11 @@ services:
     volumes:
       - ./configuration/loki/loki.yaml:/etc/loki/loki-local.yaml
       - ./volumes/loki:/tmp/loki
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        window: 120s
 
   grafana:
     image: grafana
@@ -95,6 +112,14 @@ services:
       - "4317:4317" # OTLP gRPC receiver
       - "4318:4318" # OTLP http receiver
       - "55679:55679" # zpages extension
+    depends_on:
+      - tempo
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        window: 120s
+
 
   tempo:
     container_name: tempo
@@ -108,6 +133,13 @@ services:
       - "4317"  # otlp grpc
     environment:
       - "TZ=America/Sao_Paulo"
+    depends_on:
+      - tempo
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        window: 120s
 
   prometheus:
     container_name: prometheus
@@ -119,6 +151,11 @@ services:
       - ./configuration/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
     ports:
       - "9090:9090"
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        window: 120s
 
   rabbitmq:
     image: rabbitmq:3.12.8-management
