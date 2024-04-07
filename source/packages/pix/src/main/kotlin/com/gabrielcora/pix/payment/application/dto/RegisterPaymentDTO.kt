@@ -3,7 +3,6 @@ package com.gabrielcora.pix.payment.application.dto
 import io.swagger.v3.oas.annotations.media.Schema
 import jakarta.validation.constraints.Positive
 import java.time.LocalDateTime
-import java.util.*
 
 @Schema(description = "Informações do pagamento a ser cadastrado.")
 data class RegisterPaymentDTO(
@@ -16,6 +15,6 @@ data class RegisterPaymentDTO(
     @field:Positive(message = "O valor do pagamento não pode ser nulo")
     val value: Double,
     val description: String,
-    val recurrence: String,
+    val recurrence: RecurrenceDTO?,
     val pixKey: String,
 )

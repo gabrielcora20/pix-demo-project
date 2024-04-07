@@ -1,5 +1,6 @@
 package com.gabrielcora.pix.payment.application.dto
 
+import com.gabrielcora.pix.payment.domain.models.enums.FrequencyTypeEnum
 import com.gabrielcora.pix.payment.domain.models.enums.PixKeyTypeEnum
 import com.gabrielcora.pix.payment.domain.models.enums.StatusEnum
 import java.time.LocalDateTime
@@ -14,9 +15,4 @@ data class PaymentDTO(
     val description: String,
     val recurrence: String,
     val destination: DestinationDTO,
-)
-
-data class DestinationDTO(
-    val pixKey: String,
-    val keyType: PixKeyTypeEnum,
 )

@@ -1,12 +1,11 @@
 package com.gabrielcora.presentation.payment.controllers
 
-import com.gabrielcora.pix.payment.application.dto.PatchPaymentDTO
+import com.gabrielcora.pix.payment.application.dto.ChangeRecurrenceDTO
 import com.gabrielcora.pix.payment.application.dto.RegisterPaymentDTO
 import com.gabrielcora.pix.payment.application.dto.UpdatePaymentDTO
 import com.gabrielcora.pix.payment.application.services.interfaces.IPaymentWriteAppService
 import com.gabrielcora.pix.payment.domain.commands.results.DeletePaymentCommandResult
-import com.gabrielcora.pix.payment.domain.commands.results.PatchPaymentCommandResult
-import com.gabrielcora.pix.payment.domain.commands.results.RegisterNewPaymentCommandResult
+import com.gabrielcora.pix.payment.domain.commands.results.ChangeRecurrenceCommandResult
 import com.gabrielcora.pix.payment.domain.commands.results.UpdatePaymentCommandResult
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.responses.ApiResponse
@@ -41,9 +40,9 @@ class PaymentWriteController @Autowired constructor(paymentWriteAppService: IPay
     }
 
     @ResponseBody
-    @PatchMapping("/{id}")
-    suspend fun patch(@Valid @PathVariable id: String, @RequestBody req: PatchPaymentDTO): ResponseEntity<PatchPaymentCommandResult> {
-        return ResponseEntity.ok(_paymentWriteAppService.patch(id, req))
+    @PatchMapping("/change-recurrence/{id}")
+    suspend fun changeRecurrence(@Valid @PathVariable id: String, @RequestBody req: ChangeRecurrenceDTO): ResponseEntity<ChangeRecurrenceCommandResult> {
+        return ResponseEntity.ok(_paymentWriteAppService.changeRecurrence(id, req))
     }
 
     @ResponseBody

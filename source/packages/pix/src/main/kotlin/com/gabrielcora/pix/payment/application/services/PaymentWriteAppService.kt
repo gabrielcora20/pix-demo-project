@@ -1,17 +1,18 @@
 package com.gabrielcora.pix.payment.application.services
 
-import com.gabrielcora.pix.payment.application.dto.PatchPaymentDTO
+import com.gabrielcora.pix.payment.application.dto.ChangeRecurrenceDTO
 import com.gabrielcora.pix.payment.application.dto.RegisterPaymentDTO
 import com.gabrielcora.pix.payment.application.dto.UpdatePaymentDTO
 import com.gabrielcora.pix.payment.application.services.interfaces.IPaymentWriteAppService
 import com.gabrielcora.pix.payment.domain.commands.DeletePaymentCommand
-import com.gabrielcora.pix.payment.domain.commands.PatchPaymentCommand
+import com.gabrielcora.pix.payment.domain.commands.ChangeRecurrenceCommand
 import com.gabrielcora.pix.payment.domain.commands.RegisterNewPaymentCommand
 import com.gabrielcora.pix.payment.domain.commands.UpdatePaymentCommand
 import com.gabrielcora.pix.payment.domain.commands.results.DeletePaymentCommandResult
-import com.gabrielcora.pix.payment.domain.commands.results.PatchPaymentCommandResult
+import com.gabrielcora.pix.payment.domain.commands.results.ChangeRecurrenceCommandResult
 import com.gabrielcora.pix.payment.domain.commands.results.RegisterNewPaymentCommandResult
 import com.gabrielcora.pix.payment.domain.commands.results.UpdatePaymentCommandResult
+import com.gabrielcora.pix.payment.domain.models.Recurrence
 import com.gabrielcora.pix.payment.infra.crosscutting.providers.CommandHandlerProvider
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -26,7 +27,7 @@ class PaymentWriteAppService @Autowired constructor(private val commandHandler: 
                 payment.paymentDate,
                 payment.value,
                 payment.description,
-                payment.recurrence,
+                if(payment.recurrence != null) Recurrence(payment.recurrence.endDate, payment.recurrence.frequencyType) else null,
                 payment.pixKey
             )
         )
@@ -39,17 +40,17 @@ class PaymentWriteAppService @Autowired constructor(private val commandHandler: 
                 payment.paymentDate,
                 payment.value,
                 payment.description,
-                payment.recurrence,
+                if(payment.recurrence != null) Recurrence(payment.recurrence.endDate, payment.recurrence.frequencyType) else null,
                 payment.pixKey
             )
         )
     }
 
-    override suspend fun patch(id: String, payment: PatchPaymentDTO): PatchPaymentCommandResult {
-        return commandHandler.handlePatchPayment(
-            PatchPaymentCommand(
+    override suspend fun changeRecurrence(id: String, paymentRecurrence: ChangeRecurrenceDTO): ChangeRecurrenceCommandResult {
+        return commandHandler.handleChangeRecurrence(
+            ChangeRecurrenceCommand(
                 id,
-                payment
+                Recurrence(paymentRecurrence.recurrence.endDate, paymentRecurrence.recurrence.frequencyType)
             )
         )
     }
