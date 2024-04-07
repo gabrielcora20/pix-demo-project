@@ -13,15 +13,5 @@ import io.opentelemetry.sdk.trace.export.SimpleSpanProcessor
 class PresentationApplication
 
 fun main(args: Array<String>) {
-    //val exporter = JaegerGrpcSpanExporter.builder().build()
-    //val spanProcessor = SimpleSpanProcessor.create(exporter)
-    //val tracerProvider = SdkTracerProvider.builder().addSpanProcessor(spanProcessor).build()
-//
-    //GlobalOpenTelemetry.set(
-    //    OpenTelemetrySdk.builder()
-    //        .setTracerProvider(tracerProvider)
-    //        .build()
-    //)
-
     runApplication<PresentationApplication>(*args)
 }

@@ -33,6 +33,7 @@ class MongoContext(
                 coroutineScope {
                     val tasks = domainCommands.map { domainCommand ->
                         async {
+                            domainCommands.remove(domainCommand)
                             domainCommand.command()
                             publishDomainEvents(domainCommand.entity.occurredEvents().toList())
                         }

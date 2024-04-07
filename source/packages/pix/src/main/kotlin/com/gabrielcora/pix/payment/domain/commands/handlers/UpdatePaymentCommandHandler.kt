@@ -32,7 +32,7 @@ class UpdatePaymentCommandHandler(
 
         val similarPayments = paymentReadRepository.findSimilarPayments(paymentToUpdate)
 
-        paymentToUpdate.raise(PaymentUpdatedEvent(paymentToUpdate.id!!))
+        paymentToUpdate.raise(PaymentUpdatedEvent(paymentToUpdate))
 
         paymentWriteRepository.save(paymentToUpdate)
         commit(paymentWriteRepository.unitOfWork)

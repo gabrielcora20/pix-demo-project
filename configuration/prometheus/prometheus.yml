@@ -10,3 +10,7 @@ scrape_configs:
     static_configs:
       - targets: [ 'presentation:8080' ]
     metrics_path: '/actuator/prometheus'
+  - job_name: 'listener'
+    static_configs:
+      - targets: [ 'listener:8090' ]
+    metrics_path: '/actuator/prometheus'

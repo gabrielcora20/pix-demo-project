@@ -5,17 +5,18 @@ import com.gabrielcora.pix.payment.domain.events.PaymentDeletedEvent
 import com.gabrielcora.pix.payment.domain.events.PaymentRegisteredEvent
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.amqp.rabbit.core.RabbitTemplate
 import org.springframework.context.event.EventListener
 import org.springframework.scheduling.annotation.Async
 import org.springframework.stereotype.Component
 
 @Component
-class PaymentDeletedEventHandler {
-    private val log: Logger = LoggerFactory.getLogger(this.javaClass)
+class PaymentDeletedEventHandler(private val rabbitTemplate: RabbitTemplate) {
+    private val routingKey: String = "payment-deleted"
 
     @Async
     @EventListener(classes = [PaymentDeletedEvent::class])
     fun handlePaymentDeletedEvent(event: Event) {
-        log.info("Handling an event - $event")
+        rabbitTemplate.convertAndSend("payment.changes", routingKey, event.payment)
     }
 }

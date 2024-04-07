@@ -20,7 +20,7 @@ class DeletePaymentCommandHandler(
 
         paymentToDelete.status = StatusEnum.CANCELED
 
-        paymentToDelete.raise(PaymentDeletedEvent(paymentToDelete.id!!))
+        paymentToDelete.raise(PaymentDeletedEvent(paymentToDelete))
 
         paymentWriteRepository.save(paymentToDelete)
         commit(paymentWriteRepository.unitOfWork)

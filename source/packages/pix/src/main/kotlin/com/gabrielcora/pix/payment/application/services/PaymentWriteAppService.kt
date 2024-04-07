@@ -1,8 +1,8 @@
 package com.gabrielcora.pix.payment.application.services
 
-import com.gabrielcora.pix.payment.application.dto.ChangeRecurrenceDTO
-import com.gabrielcora.pix.payment.application.dto.RegisterPaymentDTO
-import com.gabrielcora.pix.payment.application.dto.UpdatePaymentDTO
+import com.gabrielcora.pix.payment.application.dto.ChangeRecurrenceDto
+import com.gabrielcora.pix.payment.application.dto.RegisterPaymentDto
+import com.gabrielcora.pix.payment.application.dto.UpdatePaymentDto
 import com.gabrielcora.pix.payment.application.services.interfaces.IPaymentWriteAppService
 import com.gabrielcora.pix.payment.domain.commands.DeletePaymentCommand
 import com.gabrielcora.pix.payment.domain.commands.ChangeRecurrenceCommand
@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service
 class PaymentWriteAppService @Autowired constructor(private val commandHandler: CommandHandlerProvider) :
     IPaymentWriteAppService {
 
-    override suspend fun register(payment: RegisterPaymentDTO): RegisterNewPaymentCommandResult {
+    override suspend fun register(payment: RegisterPaymentDto): RegisterNewPaymentCommandResult {
         return commandHandler.handleRegisterNewPayment(
             RegisterNewPaymentCommand(
                 payment.paymentDate,
@@ -33,7 +33,7 @@ class PaymentWriteAppService @Autowired constructor(private val commandHandler: 
         )
     }
 
-    override suspend fun update(id: String, payment: UpdatePaymentDTO): UpdatePaymentCommandResult {
+    override suspend fun update(id: String, payment: UpdatePaymentDto): UpdatePaymentCommandResult {
         return commandHandler.handleUpdatePayment(
             UpdatePaymentCommand(
                 id,
@@ -46,7 +46,7 @@ class PaymentWriteAppService @Autowired constructor(private val commandHandler: 
         )
     }
 
-    override suspend fun changeRecurrence(id: String, paymentRecurrence: ChangeRecurrenceDTO): ChangeRecurrenceCommandResult {
+    override suspend fun changeRecurrence(id: String, paymentRecurrence: ChangeRecurrenceDto): ChangeRecurrenceCommandResult {
         return commandHandler.handleChangeRecurrence(
             ChangeRecurrenceCommand(
                 id,

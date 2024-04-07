@@ -11,6 +11,21 @@ services:
       - ./source/packages:/packages
     ports:
       - '8080:8080'
+    depends_on:
+      - rabbitmq
+
+  listener:
+    container_name: listener
+    image: listener
+    build:
+      context: source
+      dockerfile: listener/Dockerfile
+    volumes:
+      - ./source/packages:/packages
+    ports:
+      - '8090:8090'
+    depends_on:
+      - rabbitmq
 
   mongo:
     container_name: mongo

@@ -28,6 +28,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.8.0")
     implementation("org.reactivestreams:reactive-streams:1.0.4")
     implementation("io.projectreactor:reactor-core:3.6.4")
+    implementation("org.springframework.boot:spring-boot-starter-amqp:3.2.4")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 

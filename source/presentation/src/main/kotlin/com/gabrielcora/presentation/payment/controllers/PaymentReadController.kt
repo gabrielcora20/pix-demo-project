@@ -11,19 +11,12 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("payment")
+@RequestMapping("v1/api/payment")
 class PaymentReadController @Autowired constructor(private val paymentReadAppService: IPaymentReadAppService) {
-
-    val tracer: Tracer = GlobalOpenTelemetry.getTracer("presentation")
-
     private val log: Logger = LoggerFactory.getLogger(PaymentReadController::class.java)
     @ResponseBody
     @GetMapping
     suspend fun getAll(): ResponseEntity<Iterable<Payment?>> {
-        val span = tracer.spanBuilder("getAll").startSpan()
-        span.setAttribute("custom_attribute", "custom_value")
-        log.info("Logging request")
-        span.end()
         return ResponseEntity.ok(this.paymentReadAppService.getAll())
     }
 

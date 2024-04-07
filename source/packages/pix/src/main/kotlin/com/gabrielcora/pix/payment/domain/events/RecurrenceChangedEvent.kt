@@ -1,5 +1,5 @@
 package com.gabrielcora.pix.payment.domain.events
 
-import org.bson.types.ObjectId
+import com.gabrielcora.pix.payment.domain.models.Payment
 
-data class RecurrenceChangedEvent(override val id: ObjectId) : Event()
+data class RecurrenceChangedEvent(override val payment: Payment) : Event()

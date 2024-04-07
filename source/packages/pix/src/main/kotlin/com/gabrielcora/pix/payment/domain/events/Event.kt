@@ -1,11 +1,7 @@
 package com.gabrielcora.pix.payment.domain.events
 
-import org.bson.types.ObjectId
+import com.gabrielcora.pix.payment.domain.models.Payment
 
 abstract class Event {
-    abstract val id: ObjectId
-
-    fun getDomainEntityId(): String {
-        return id.toString()
-    }
+    abstract val payment: Payment
 }

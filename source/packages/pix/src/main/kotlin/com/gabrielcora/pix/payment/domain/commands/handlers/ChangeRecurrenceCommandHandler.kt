@@ -19,7 +19,7 @@ class ChangeRecurrenceCommandHandler(
 
         paymentToUpdate.recurrence = command.recurrence
 
-        paymentToUpdate.raise(RecurrenceChangedEvent(paymentToUpdate.id!!))
+        paymentToUpdate.raise(RecurrenceChangedEvent(paymentToUpdate))
 
         paymentWriteRepository.save(paymentToUpdate)
         commit(paymentWriteRepository.unitOfWork)

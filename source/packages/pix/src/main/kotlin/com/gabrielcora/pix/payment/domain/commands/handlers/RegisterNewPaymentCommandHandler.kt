@@ -35,7 +35,7 @@ class RegisterNewPaymentCommandHandler(
 
         val similarPayments = paymentReadRepository.findSimilarPayments(paymentToInsert)
 
-        paymentToInsert.raise(PaymentRegisteredEvent(paymentToInsert.id!!))
+        paymentToInsert.raise(PaymentRegisteredEvent(paymentToInsert))
 
         paymentWriteRepository.save(paymentToInsert)
         commit(paymentWriteRepository.unitOfWork)

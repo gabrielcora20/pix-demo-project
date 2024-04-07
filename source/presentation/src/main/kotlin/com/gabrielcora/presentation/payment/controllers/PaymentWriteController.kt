@@ -1,8 +1,8 @@
 package com.gabrielcora.presentation.payment.controllers
 
-import com.gabrielcora.pix.payment.application.dto.ChangeRecurrenceDTO
-import com.gabrielcora.pix.payment.application.dto.RegisterPaymentDTO
-import com.gabrielcora.pix.payment.application.dto.UpdatePaymentDTO
+import com.gabrielcora.pix.payment.application.dto.ChangeRecurrenceDto
+import com.gabrielcora.pix.payment.application.dto.RegisterPaymentDto
+import com.gabrielcora.pix.payment.application.dto.UpdatePaymentDto
 import com.gabrielcora.pix.payment.application.services.interfaces.IPaymentWriteAppService
 import com.gabrielcora.pix.payment.domain.commands.results.DeletePaymentCommandResult
 import com.gabrielcora.pix.payment.domain.commands.results.ChangeRecurrenceCommandResult
@@ -16,7 +16,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("payment")
+@RequestMapping("v1/api/payment")
 class PaymentWriteController @Autowired constructor(paymentWriteAppService: IPaymentWriteAppService) {
     private val _paymentWriteAppService: IPaymentWriteAppService = paymentWriteAppService
 
@@ -29,19 +29,19 @@ class PaymentWriteController @Autowired constructor(paymentWriteAppService: IPay
     )
     @ResponseBody
     @PostMapping
-    suspend fun post(@Valid @RequestBody req: RegisterPaymentDTO): ResponseEntity<Any> {
+    suspend fun post(@Valid @RequestBody req: RegisterPaymentDto): ResponseEntity<Any> {
         return ResponseEntity.ok(_paymentWriteAppService.register(req))
     }
 
     @ResponseBody
     @PutMapping("/{id}")
-    suspend fun put(@Valid @PathVariable id: String, @RequestBody req: UpdatePaymentDTO): ResponseEntity<UpdatePaymentCommandResult> {
+    suspend fun put(@Valid @PathVariable id: String, @RequestBody req: UpdatePaymentDto): ResponseEntity<UpdatePaymentCommandResult> {
         return ResponseEntity.ok(_paymentWriteAppService.update(id, req))
     }
 
     @ResponseBody
     @PatchMapping("/change-recurrence/{id}")
-    suspend fun changeRecurrence(@Valid @PathVariable id: String, @RequestBody req: ChangeRecurrenceDTO): ResponseEntity<ChangeRecurrenceCommandResult> {
+    suspend fun changeRecurrence(@Valid @PathVariable id: String, @RequestBody req: ChangeRecurrenceDto): ResponseEntity<ChangeRecurrenceCommandResult> {
         return ResponseEntity.ok(_paymentWriteAppService.changeRecurrence(id, req))
     }
 

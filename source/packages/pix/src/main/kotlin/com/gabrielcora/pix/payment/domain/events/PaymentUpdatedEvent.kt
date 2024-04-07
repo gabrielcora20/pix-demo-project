@@ -1,5 +1,5 @@
 package com.gabrielcora.pix.payment.domain.events
 
-import org.bson.types.ObjectId
+import com.gabrielcora.pix.payment.domain.models.Payment
 
-data class PaymentUpdatedEvent(override val id: ObjectId) : Event()
+data class PaymentUpdatedEvent(override val payment: Payment) : Event()

@@ -50,6 +50,11 @@ dependencies {
 	runtimeOnly("io.opentelemetry:opentelemetry-exporter-otlp-common:1.31.0")
 	implementation("jakarta.validation:jakarta.validation-api:3.0.2")
 	implementation("org.springframework.boot:spring-boot-starter-amqp:3.2.4")
+	// https://mvnrepository.com/artifact/org.aspectj/aspectjweaver
+	implementation("org.aspectj:aspectjweaver:1.9.22")
+	// https://mvnrepository.com/artifact/org.springframework/spring-context
+	implementation("org.springframework:spring-context:6.1.5")
+
 	implementation(project(":pix"))
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
