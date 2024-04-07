@@ -1,17 +1,20 @@
 package com.gabrielcora.pix.payment.domain.events.handlers
 
 import com.gabrielcora.pix.payment.domain.events.Event
-import com.gabrielcora.pix.payment.infra.crosscutting.bus.anotations.PaymentEventListener
+import com.gabrielcora.pix.payment.domain.events.PaymentRegisteredEvent
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.context.event.EventListener
+import org.springframework.scheduling.annotation.Async
 import org.springframework.stereotype.Component
 
 @Component
-class EventProjectionHandler {
+class PaymentRegisteredEventHandler {
     private val log: Logger = LoggerFactory.getLogger(this.javaClass)
 
-    @PaymentEventListener
-    fun handleProductEvents(event: Event) {
+    @Async
+    @EventListener(classes = [PaymentRegisteredEvent::class])
+    fun handlePaymentRegisteredEvent(event: Event) {
         log.info("Handling an event - $event")
     }
 }
