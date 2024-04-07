@@ -39,6 +39,6 @@ class RegisterNewPaymentCommandHandler(
 
         paymentWriteRepository.save(paymentToInsert)
         commit(paymentWriteRepository.unitOfWork)
-        return RegisterNewPaymentCommandResult(true, if (similarPayments.count() > 0) listOf("Um pagamento semelhante foi detectado") else null)
+        return RegisterNewPaymentCommandResult(paymentToInsert, if (similarPayments.count() > 0) listOf("Um pagamento semelhante foi detectado") else null)
     }
 }

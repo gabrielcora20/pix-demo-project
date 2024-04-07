@@ -1,3 +1,5 @@
 package com.gabrielcora.pix.payment.domain.commands.results
 
-class ChangeRecurrenceCommandResult(val success: Boolean, val warnings: Iterable<String>? = null)
+import com.gabrielcora.pix.payment.domain.models.Payment
+
+class ChangeRecurrenceCommandResult(val updatedPayment: Payment, val warnings: Iterable<String>? = null)

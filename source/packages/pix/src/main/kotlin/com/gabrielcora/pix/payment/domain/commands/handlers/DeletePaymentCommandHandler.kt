@@ -24,6 +24,6 @@ class DeletePaymentCommandHandler(
 
         paymentWriteRepository.save(paymentToDelete)
         commit(paymentWriteRepository.unitOfWork)
-        return DeletePaymentCommandResult(true)
+        return DeletePaymentCommandResult(paymentToDelete)
     }
 }

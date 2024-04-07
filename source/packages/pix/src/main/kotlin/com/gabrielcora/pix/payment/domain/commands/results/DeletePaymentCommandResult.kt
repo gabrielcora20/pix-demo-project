@@ -1,3 +1,5 @@
 package com.gabrielcora.pix.payment.domain.commands.results
 
-class DeletePaymentCommandResult(val success: Boolean)
+import com.gabrielcora.pix.payment.domain.models.Payment
+
+class DeletePaymentCommandResult(val updatedPayment: Payment)

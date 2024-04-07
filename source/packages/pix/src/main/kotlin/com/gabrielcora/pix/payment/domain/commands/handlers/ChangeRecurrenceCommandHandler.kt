@@ -23,6 +23,6 @@ class ChangeRecurrenceCommandHandler(
 
         paymentWriteRepository.save(paymentToUpdate)
         commit(paymentWriteRepository.unitOfWork)
-        return ChangeRecurrenceCommandResult(true)
+        return ChangeRecurrenceCommandResult(paymentToUpdate)
     }
 }

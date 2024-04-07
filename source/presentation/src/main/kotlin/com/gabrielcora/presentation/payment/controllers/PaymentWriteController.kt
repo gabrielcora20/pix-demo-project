@@ -17,9 +17,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("v1/api/payment")
-class PaymentWriteController @Autowired constructor(paymentWriteAppService: IPaymentWriteAppService) {
-    private val _paymentWriteAppService: IPaymentWriteAppService = paymentWriteAppService
-
+class PaymentWriteController @Autowired constructor(val paymentWriteAppService: IPaymentWriteAppService) {
     @Operation(summary = "Cadastra um pagamento", description = "Retorna 200 se o cadastro for bem sucedido")
     @ApiResponses(
         value = [
@@ -30,24 +28,24 @@ class PaymentWriteController @Autowired constructor(paymentWriteAppService: IPay
     @ResponseBody
     @PostMapping
     suspend fun post(@Valid @RequestBody req: RegisterPaymentDto): ResponseEntity<Any> {
-        return ResponseEntity.ok(_paymentWriteAppService.register(req))
+        return ResponseEntity.ok(paymentWriteAppService.register(req))
     }
 
     @ResponseBody
     @PutMapping("/{id}")
     suspend fun put(@Valid @PathVariable id: String, @RequestBody req: UpdatePaymentDto): ResponseEntity<UpdatePaymentCommandResult> {
-        return ResponseEntity.ok(_paymentWriteAppService.update(id, req))
+        return ResponseEntity.ok(paymentWriteAppService.update(id, req))
     }
 
     @ResponseBody
     @PatchMapping("/change-recurrence/{id}")
     suspend fun changeRecurrence(@Valid @PathVariable id: String, @RequestBody req: ChangeRecurrenceDto): ResponseEntity<ChangeRecurrenceCommandResult> {
-        return ResponseEntity.ok(_paymentWriteAppService.changeRecurrence(id, req))
+        return ResponseEntity.ok(paymentWriteAppService.changeRecurrence(id, req))
     }
 
     @ResponseBody
     @DeleteMapping("/{id}")
     suspend fun delete(@Valid @PathVariable id: String): ResponseEntity<DeletePaymentCommandResult> {
-        return ResponseEntity.ok(_paymentWriteAppService.delete(id))
+        return ResponseEntity.ok(paymentWriteAppService.delete(id))
     }
 }

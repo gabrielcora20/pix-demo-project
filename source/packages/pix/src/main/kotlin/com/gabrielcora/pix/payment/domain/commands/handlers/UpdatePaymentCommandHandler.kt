@@ -36,6 +36,6 @@ class UpdatePaymentCommandHandler(
 
         paymentWriteRepository.save(paymentToUpdate)
         commit(paymentWriteRepository.unitOfWork)
-        return UpdatePaymentCommandResult(true, if (similarPayments.count() > 0) listOf("Um pagamento semelhante foi detectado") else null)
+        return UpdatePaymentCommandResult(paymentToUpdate, if (similarPayments.count() > 0) listOf("Um pagamento semelhante foi detectado") else null)
     }
 }
