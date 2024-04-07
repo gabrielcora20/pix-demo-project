@@ -62,7 +62,7 @@ class PaymentReadRepository(context: IMongoContext) : IPaymentReadRepository {
 
     override suspend fun findSimilarPayments(payment: Payment): Iterable<Payment> {
         try {
-            val startOfDay = payment.paymentDate!!.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().atStartOfDay()
+            val startOfDay = payment.paymentDate!!.toLocalDate().atStartOfDay()
             val endOfDay = startOfDay.plusDays(1)
 
             return dbSet.find(

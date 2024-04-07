@@ -9,6 +9,7 @@ import com.gabrielcora.pix.payment.domain.interfaces.repository.write.IPaymentWr
 import com.gabrielcora.pix.payment.domain.models.Destination
 import com.gabrielcora.pix.payment.infra.crosscutting.helpers.interfaces.PixKeyHelper
 import org.springframework.stereotype.Component
+import java.time.LocalDateTime
 import java.util.*
 
 @Component
@@ -21,7 +22,7 @@ class UpdatePaymentCommandHandler(
         val paymentToUpdate = paymentReadRepository.findById(command.id)
             ?: throw PaymentNotFoundException("Não foi encontrado nenhum pagamento com o id ${command.id}")
 
-        val currentDate = Date()
+        val currentDate = LocalDateTime.now()
 
         paymentToUpdate.paymentDate = command.paymentDate ?: currentDate
         paymentToUpdate.value = command.value
@@ -30,10 +31,12 @@ class UpdatePaymentCommandHandler(
         paymentToUpdate.destination = Destination(command.pixKey, pixKeyHelper.getTypeFromPixKey(command.pixKey))
         paymentToUpdate.status = paymentToUpdate.getStatusByPaymentDate(currentDate)
 
+        val similarPayments = paymentReadRepository.findSimilarPayments(paymentToUpdate)
+
         paymentToUpdate.raise(PaymentUpdatedEvent(paymentToUpdate.id!!))
 
         paymentWriteRepository.save(paymentToUpdate)
         commit(paymentWriteRepository.unitOfWork)
-        return UpdatePaymentCommandResult(true)
+        return UpdatePaymentCommandResult(true, if (similarPayments.count() > 0) listOf("Um pagamento semelhante foi detectado") else null)
     }
 }

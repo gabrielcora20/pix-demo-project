@@ -10,6 +10,7 @@ import com.gabrielcora.pix.payment.domain.models.Destination
 import com.gabrielcora.pix.payment.infra.crosscutting.helpers.interfaces.ObjectMergeHelper
 import com.gabrielcora.pix.payment.infra.crosscutting.helpers.interfaces.PixKeyHelper
 import org.springframework.stereotype.Component
+import java.time.LocalDateTime
 import java.util.*
 
 @Component
@@ -27,7 +28,7 @@ class PatchPaymentCommandHandler(
 
         val paymentPatched = objectMergeHelper.merge(paymentToPatch, command.payment.filter { it -> it.key != "pixKey" })
 
-        val currentDate = Date()
+        val currentDate = LocalDateTime.now()
 
         if (command.payment.containsKey("pixKey"))
             paymentPatched.destination = Destination(pixKey, pixKeyHelper.getTypeFromPixKey(pixKey))
@@ -35,10 +36,12 @@ class PatchPaymentCommandHandler(
         if (command.payment.containsKey("paymentDate"))
             paymentPatched.status = paymentPatched.getStatusByPaymentDate(currentDate)
 
+        val similarPayments = paymentReadRepository.findSimilarPayments(paymentPatched)
+
         paymentPatched.raise(PaymentPatchedEvent(paymentPatched.id!!))
 
         paymentWriteRepository.save(paymentPatched)
         commit(paymentWriteRepository.unitOfWork)
-        return PatchPaymentCommandResult(true)
+        return PatchPaymentCommandResult(true, if (similarPayments.count() > 0) listOf("Um pagamento semelhante foi detectado") else null)
     }
 }

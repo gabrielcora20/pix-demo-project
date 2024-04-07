@@ -10,6 +10,7 @@ import com.gabrielcora.pix.payment.domain.models.Payment
 import com.gabrielcora.pix.payment.infra.crosscutting.helpers.interfaces.PixKeyHelper
 import org.bson.types.ObjectId
 import org.springframework.stereotype.Component
+import java.time.LocalDateTime
 import java.util.*
 
 @Component
@@ -23,7 +24,7 @@ class RegisterNewPaymentCommandHandler(
 
         paymentToInsert.id = ObjectId()
 
-        val currentDate = Date()
+        val currentDate = LocalDateTime.now()
 
         paymentToInsert.inclusionDate = currentDate
         paymentToInsert.paymentDate = command.paymentDate ?: currentDate
