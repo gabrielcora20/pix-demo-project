@@ -133,8 +133,6 @@ services:
       - "4317"  # otlp grpc
     environment:
       - "TZ=America/Sao_Paulo"
-    depends_on:
-      - tempo
     deploy:
       restart_policy:
         condition: on-failure
