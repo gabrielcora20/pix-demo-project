@@ -1,16 +1,16 @@
 version: '3'
 
 services:
-  #presentation:
-  #  container_name: presentation
-  #  image: presentation
-  #  build:
-  #    context: source
-  #    dockerfile: presentation/Dockerfile
-  #  volumes:
-  #    - ./source/packages:/packages
-  #  ports:
-  #    - '8080:8080'
+  presentation:
+    container_name: presentation
+    image: presentation
+    build:
+      context: source
+      dockerfile: presentation/Dockerfile
+    volumes:
+      - ./source/packages:/packages
+    ports:
+      - '8080:8080'
 
   mongo:
     container_name: mongo
@@ -104,3 +104,20 @@ services:
       - ./configuration/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
     ports:
       - "9090:9090"
+
+  rabbitmq:
+    image: rabbitmq:3.12.8-management
+    hostname: rabbitmq
+    container_name: rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=pix
+      - RABBITMQ_DEFAULT_PASS=ZiU42veV7Ud48A0dyb9ASgYsHbR6Un
+      - RABBITMQ_MESSAGE_TTL=3600000
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        window: 120s

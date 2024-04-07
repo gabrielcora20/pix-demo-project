@@ -4,7 +4,7 @@ import com.gabrielcora.pix.payment.domain.models.Payment
 import com.gabrielcora.pix.payment.domain.models.enums.StatusEnum
 import org.bson.types.ObjectId
 
-interface IPaymentReadRepository {
+interface PaymentReadRepository {
     suspend fun findById(id: ObjectId): Payment?
     suspend fun findById(id: String): Payment?
     suspend fun findAll(): Iterable<Payment>

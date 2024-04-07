@@ -25,10 +25,10 @@ class PaymentWriteAppService @Autowired constructor(private val commandHandler: 
         return commandHandler.handleRegisterNewPayment(
             RegisterNewPaymentCommand(
                 payment.paymentDate,
-                payment.value,
-                payment.description,
-                if(payment.recurrence != null) Recurrence(payment.recurrence.endDate, payment.recurrence.frequencyType) else null,
-                payment.pixKey
+                payment.value!!,
+                payment.description!!,
+                if(payment.recurrence != null) Recurrence(payment.recurrence.endDate!!, payment.recurrence.frequencyType!!) else null,
+                payment.pixKey!!
             )
         )
     }
@@ -38,10 +38,10 @@ class PaymentWriteAppService @Autowired constructor(private val commandHandler: 
             UpdatePaymentCommand(
                 id,
                 payment.paymentDate,
-                payment.value,
-                payment.description,
-                if(payment.recurrence != null) Recurrence(payment.recurrence.endDate, payment.recurrence.frequencyType) else null,
-                payment.pixKey
+                payment.value!!,
+                payment.description!!,
+                if(payment.recurrence != null) Recurrence(payment.recurrence.endDate!!, payment.recurrence.frequencyType!!) else null,
+                payment.pixKey!!
             )
         )
     }
@@ -50,7 +50,7 @@ class PaymentWriteAppService @Autowired constructor(private val commandHandler: 
         return commandHandler.handleChangeRecurrence(
             ChangeRecurrenceCommand(
                 id,
-                Recurrence(paymentRecurrence.recurrence.endDate, paymentRecurrence.recurrence.frequencyType)
+                Recurrence(paymentRecurrence.recurrence!!.endDate!!, paymentRecurrence.recurrence.frequencyType!!)
             )
         )
     }

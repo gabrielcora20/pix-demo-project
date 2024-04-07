@@ -1,5 +1,5 @@
 package com.gabrielcora.pix.payment.domain.interfaces
 
-interface IUnitOfWork {
+interface UnitOfWork {
     suspend fun commit(): Boolean
 }

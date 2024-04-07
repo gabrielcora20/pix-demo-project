@@ -3,7 +3,7 @@ package com.gabrielcora.pix.payment.infra.data.context
 import com.gabrielcora.pix.payment.domain.events.Event
 import com.gabrielcora.pix.payment.domain.models.DomainEntity
 import com.gabrielcora.pix.payment.infra.crosscutting.bus.interfaces.EventBus
-import com.gabrielcora.pix.payment.infra.data.interfaces.IMongoContext
+import com.gabrielcora.pix.payment.infra.data.interfaces.MongoContext
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
@@ -17,7 +17,7 @@ import java.lang.System.gc
 class MongoContext(
     private val eventBus: EventBus,
     override val db: MongoTemplate,
-) : IMongoContext {
+) : MongoContext {
     private val logger = LoggerFactory.getLogger(javaClass)
     private val domainCommands = mutableListOf<DomainCommand>()
 

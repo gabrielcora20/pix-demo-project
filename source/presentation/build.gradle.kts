@@ -29,6 +29,8 @@ dependencies {
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.8.0")
 	implementation("org.reactivestreams:reactive-streams:1.0.4")
 	implementation("io.projectreactor:reactor-core:3.6.4")
+	// https://mvnrepository.com/artifact/io.micrometer/micrometer-registry-prometheus
+	implementation("io.micrometer:micrometer-registry-prometheus:1.12.4")
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator
 	implementation("org.springframework.boot:spring-boot-starter-actuator:3.2.4")
 	// https://mvnrepository.com/artifact/io.micrometer/micrometer-registry-otlp

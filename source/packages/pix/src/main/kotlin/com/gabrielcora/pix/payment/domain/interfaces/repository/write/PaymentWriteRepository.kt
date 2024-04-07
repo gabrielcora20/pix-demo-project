@@ -1,9 +1,9 @@
 package com.gabrielcora.pix.payment.domain.interfaces.repository.write
 
-import com.gabrielcora.pix.payment.domain.interfaces.IUnitOfWork
+import com.gabrielcora.pix.payment.domain.interfaces.UnitOfWork
 import com.gabrielcora.pix.payment.domain.models.Payment
 
-interface IPaymentWriteRepository {
-    val unitOfWork: IUnitOfWork
+interface PaymentWriteRepository {
+    val unitOfWork: UnitOfWork
     fun save(payment: Payment)
 }

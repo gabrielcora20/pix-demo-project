@@ -1,20 +1,19 @@
 package com.gabrielcora.pix.payment.infra.data.repository.read
 
-import com.gabrielcora.pix.payment.domain.interfaces.repository.read.IPaymentReadRepository
+import com.gabrielcora.pix.payment.domain.interfaces.repository.read.PaymentReadRepository
 import com.gabrielcora.pix.payment.domain.models.Payment
 import com.gabrielcora.pix.payment.domain.models.enums.StatusEnum
-import com.gabrielcora.pix.payment.infra.data.interfaces.IMongoContext
+import com.gabrielcora.pix.payment.infra.data.interfaces.MongoContext
 import org.bson.types.ObjectId
 import org.springframework.data.domain.Sort
 import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.data.mongodb.core.query.Criteria
 import org.springframework.data.mongodb.core.query.Query
 import org.springframework.stereotype.Repository
-import java.time.ZoneId
-import java.util.*
 
 @Repository
-class PaymentReadRepository(context: IMongoContext) : IPaymentReadRepository {
+class PaymentReadRepository(context: MongoContext) :
+    PaymentReadRepository {
     protected val dbSet: MongoTemplate = context.db
     override suspend fun findById(id: ObjectId): Payment? {
         try {

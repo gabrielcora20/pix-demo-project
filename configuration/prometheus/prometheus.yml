@@ -6,3 +6,7 @@ scrape_configs:
   - job_name: 'otel-collector'
     static_configs:
       - targets: ['otel-collector:8889']
+  - job_name: 'presentation'
+    static_configs:
+      - targets: [ 'presentation:8080' ]
+    metrics_path: '/actuator/prometheus'
