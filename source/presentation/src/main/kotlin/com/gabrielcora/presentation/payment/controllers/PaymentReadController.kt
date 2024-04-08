@@ -2,8 +2,6 @@ package com.gabrielcora.presentation.payment.controllers
 
 import com.gabrielcora.pix.payment.application.services.interfaces.IPaymentReadAppService
 import com.gabrielcora.pix.payment.domain.models.Payment
-import io.opentelemetry.api.GlobalOpenTelemetry
-import io.opentelemetry.api.trace.Tracer
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.responses.ApiResponses

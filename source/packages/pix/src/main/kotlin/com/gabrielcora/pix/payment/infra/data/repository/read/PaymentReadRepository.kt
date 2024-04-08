@@ -70,6 +70,7 @@ class PaymentReadRepository(context: MongoContext) :
                         .where("paymentDate").gte(startOfDay).lt(endOfDay)
                         .and("destination.pixKey").`is`(payment.destination!!.pixKey)
                         .and("value").`is`(payment.value)
+                        .and("_id").ne(payment.id)
                 ).with(
                     Sort.by(Sort.Direction.DESC, "inclusionDate")
                 ),
