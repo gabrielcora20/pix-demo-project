@@ -31,18 +31,42 @@ class PaymentWriteController @Autowired constructor(val paymentWriteAppService: 
         return ResponseEntity.ok(paymentWriteAppService.register(req))
     }
 
+    @Operation(summary = "Atualiza um pagamento", description = "Retorna 200 se a atualização for bem sucedida")
+    @ApiResponses(
+        value = [
+            ApiResponse(responseCode = "200", description = "Pagamento atualizado"),
+            ApiResponse(responseCode = "404", description = "Nenhum pagamento encontrado com o id fornecido"),
+            ApiResponse(responseCode = "400", description = "Ocorreu um erro ao atualizar o pagamento"),
+        ]
+    )
     @ResponseBody
     @PutMapping("/{id}")
     suspend fun put(@Valid @PathVariable id: String, @RequestBody req: UpdatePaymentDto): ResponseEntity<UpdatePaymentCommandResult> {
         return ResponseEntity.ok(paymentWriteAppService.update(id, req))
     }
 
+    @Operation(summary = "Altera a recorrência de um pagamento", description = "Retorna 200 se a alteração da recorrência for bem sucedida")
+    @ApiResponses(
+        value = [
+            ApiResponse(responseCode = "200", description = "Recorrência do pagamento alterada"),
+            ApiResponse(responseCode = "404", description = "Nenhum pagamento encontrado com o id fornecido"),
+            ApiResponse(responseCode = "400", description = "Ocorreu um erro ao alterar a recorrência do pagamento"),
+        ]
+    )
     @ResponseBody
     @PatchMapping("/change-recurrence/{id}")
     suspend fun changeRecurrence(@Valid @PathVariable id: String, @RequestBody req: ChangeRecurrenceDto): ResponseEntity<ChangeRecurrenceCommandResult> {
         return ResponseEntity.ok(paymentWriteAppService.changeRecurrence(id, req))
     }
 
+    @Operation(summary = "Exclui um pagamento", description = "Retorna 200 se a exclusão for bem sucedida")
+    @ApiResponses(
+        value = [
+            ApiResponse(responseCode = "200", description = "Pagamento excluído"),
+            ApiResponse(responseCode = "404", description = "Nenhum pagamento encontrado com o id fornecido"),
+            ApiResponse(responseCode = "400", description = "Ocorreu um erro ao excluir o pagamento"),
+        ]
+    )
     @ResponseBody
     @DeleteMapping("/{id}")
     suspend fun delete(@Valid @PathVariable id: String): ResponseEntity<DeletePaymentCommandResult> {

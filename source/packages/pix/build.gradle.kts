@@ -29,6 +29,7 @@ dependencies {
     implementation("org.reactivestreams:reactive-streams:1.0.4")
     implementation("io.projectreactor:reactor-core:3.6.4")
     implementation("org.springframework.boot:spring-boot-starter-amqp:3.2.4")
+    implementation("io.springfox:springfox-boot-starter:3.0.0")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.mockito:mockito-core:5.11.0")
     testImplementation("junit:junit:4.13.2")
