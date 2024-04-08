@@ -77,7 +77,6 @@ services:
 
   nginx:
     image: nginx
-    build: configuration/nginx
     container_name: presentation
     ports:
       - "80:80"

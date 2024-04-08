@@ -71,3 +71,7 @@ A aplicação conta com os seguintes serviços:
   usuario: pix
   senha:  ZiU42veV7Ud48A0dyb9ASgYsHbR6Un
 ```
+
+## Observações
+
+- Caso passe um tempo e a porta 80 não retornar nada, por favor reinicie o container "Presentation" e tente novamente (implementei um healthcheck para subir apenas quando todas as instâncias estivessem rodando, mas tive alguns problemas na elaboração e tive de reverter).
