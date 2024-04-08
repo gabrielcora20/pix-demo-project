@@ -5,6 +5,6 @@ WORKDIR /etc/nginx/
 RUN apt-get update && apt-get install -y jq
 
 COPY . .
-RUN chmod +x start.sh
+RUN chmod +x /etc/nginx/start.sh
 
-CMD ["/bin/bash", "-c", "/etc/nginx/start.sh"]
+CMD ["bash", "-c", "/etc/nginx/start.sh"]

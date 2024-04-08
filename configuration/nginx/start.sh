@@ -1,4 +1,5 @@
 #!/bin/bash
+
 check_health() {
     service_name="$1"
     health_status=$(curl -s http://"$service_name"/actuator/health | jq -r '.status')
