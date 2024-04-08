@@ -6,12 +6,13 @@ import com.gabrielcora.listener.dto.RecurrenceEventResponseDto
 import com.gabrielcora.pix.payment.domain.models.enums.FrequencyTypeEnum
 import com.gabrielcora.pix.payment.domain.models.enums.PixKeyTypeEnum
 import com.gabrielcora.pix.payment.domain.models.enums.StatusEnum
+import org.bson.types.ObjectId
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.`when`
 import java.time.LocalDateTime
 
 val paymentEventResponseDtoMock: PaymentEventResponseDto = mock(PaymentEventResponseDto::class.java).apply {
-    `when`(id).thenReturn("6611f74a927c68691c418622")
+    `when`(id).thenReturn(ObjectId("6611f74a927c68691c418622"))
     `when`(status).thenReturn(StatusEnum.EFFECTED)
     `when`(inclusionDate).thenReturn(LocalDateTime.now())
     `when`(paymentDate).thenReturn(LocalDateTime.now())
