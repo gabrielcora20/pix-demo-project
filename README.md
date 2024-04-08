@@ -8,7 +8,7 @@ Com o objetivo de cadastrar e consultar registros referentes a pagamentos Pix, d
 
 A aplicação conta com os seguintes serviços:
 
-- [Conjunto de _endpoints_ para manipulação de pagamentos Pix](http://localhost:8080/swagger-ui/index.html) - Interface em _Swagger_ para utilização dos _endpoints_.
+- [Conjunto de _endpoints_ para manipulação de pagamentos Pix](http://localhost/swagger-ui/index.html) - Interface em _Swagger_ para utilização dos _endpoints_.
 - [Grafana](http://localhost:3000) - Local onde as métricas, _dashboards_ e _logs_ podem ser visualizados de forma centralizada.
 - [Prometheus](http://localhost:9090) - Aqui é possível visualizar as métricas e alertas de _healthcheck_ (esses dados também podem ser visualizados no [Grafana](http://localhost:3000)).
 

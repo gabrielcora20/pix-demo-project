@@ -4,6 +4,8 @@ services:
   presentation-primary:
     container_name: presentation-primary
     image: presentation
+    ports:
+      - "80"
     build:
       context: source
       dockerfile: presentation/Dockerfile
@@ -20,6 +22,8 @@ services:
   presentation-secondary:
     container_name: presentation-secondary
     image: presentation
+    ports:
+      - "80"
     build:
       context: source
       dockerfile: presentation/Dockerfile
@@ -36,6 +40,8 @@ services:
   presentation-tertiary:
     container_name: presentation-tertiary
     image: presentation
+    ports:
+      - "80"
     build:
       context: source
       dockerfile: presentation/Dockerfile
@@ -52,6 +58,8 @@ services:
   presentation-quaternary:
     container_name: presentation-quaternary
     image: presentation
+    ports:
+      - "80"
     build:
       context: source
       dockerfile: presentation/Dockerfile
@@ -71,7 +79,7 @@ services:
     image: nginx
     container_name: presentation
     ports:
-      - "8080:8080"
+      - "80:80"
     volumes:
       - ./source/presentation/nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:

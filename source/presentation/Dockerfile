@@ -8,6 +8,6 @@ RUN ./gradlew build
 
 FROM openjdk:21-slim
 WORKDIR /app
-EXPOSE 8080
+EXPOSE 80
 COPY --from=builder /builder/presentation/build/libs/presentation-0.0.1-SNAPSHOT.jar .
 CMD ["java", "-jar", "presentation-0.0.1-SNAPSHOT.jar"]

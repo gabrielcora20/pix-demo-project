@@ -6,10 +6,27 @@ scrape_configs:
   - job_name: 'otel-collector'
     static_configs:
       - targets: ['otel-collector:8889']
-  - job_name: 'presentation'
+
+  - job_name: 'presentation-primary'
     static_configs:
-      - targets: [ 'presentation:8080' ]
+      - targets: [ 'presentation-primary' ]
     metrics_path: '/actuator/prometheus'
+
+  - job_name: 'presentation-secondary'
+    static_configs:
+      - targets: [ 'presentation-secondary' ]
+    metrics_path: '/actuator/prometheus'
+
+  - job_name: 'presentation-tertiary'
+    static_configs:
+      - targets: [ 'presentation-tertiary' ]
+    metrics_path: '/actuator/prometheus'
+
+  - job_name: 'presentation-quaternary'
+    static_configs:
+      - targets: [ 'presentation-quaternary' ]
+    metrics_path: '/actuator/prometheus'
+
   - job_name: 'listener'
     static_configs:
       - targets: [ 'listener:8090' ]
