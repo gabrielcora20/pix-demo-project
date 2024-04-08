@@ -15,7 +15,7 @@
       {
         "datasource": "Prometheus",
         "enable": true,
-        "expr": "resets(process_uptime_seconds{application=\"$application\", instance=\"$instance\"}[1m]) > 0",
+        "expr": "resets(process_uptime_seconds{application=\"$job\", instance=\"$instance\"}[1m]) > 0",
         "iconColor": "rgba(255, 96, 96, 1)",
         "name": "Restart Detection",
         "showIn": 0,
@@ -1007,10 +1007,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "mbytes",
-        "short"
-      ],
+      "y_formats": ["mbytes", "short"],
       "yaxes": [
         {
           "format": "bytes",
@@ -1140,10 +1137,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "mbytes",
-        "short"
-      ],
+      "y_formats": ["mbytes", "short"],
       "yaxes": [
         {
           "format": "bytes",
@@ -1273,10 +1267,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "mbytes",
-        "short"
-      ],
+      "y_formats": ["mbytes", "short"],
       "yaxes": [
         {
           "format": "bytes",
@@ -1411,10 +1402,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "mbytes",
-        "short"
-      ],
+      "y_formats": ["mbytes", "short"],
       "yaxes": [
         {
           "format": "bytes",
@@ -1559,10 +1547,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "short",
-        "short"
-      ],
+      "y_formats": ["short", "short"],
       "yaxes": [
         {
           "decimals": 1,
@@ -1683,10 +1668,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "short",
-        "short"
-      ],
+      "y_formats": ["short", "short"],
       "yaxes": [
         {
           "decimals": 1,
@@ -1826,10 +1808,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "short",
-        "short"
-      ],
+      "y_formats": ["short", "short"],
       "yaxes": [
         {
           "decimals": 0,
@@ -2070,10 +2049,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "short",
-        "short"
-      ],
+      "y_formats": ["short", "short"],
       "yaxes": [
         {
           "decimals": 0,
@@ -2198,10 +2174,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "short",
-        "short"
-      ],
+      "y_formats": ["short", "short"],
       "yaxes": [
         {
           "decimals": 0,
@@ -2352,10 +2325,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "mbytes",
-        "short"
-      ],
+      "y_formats": ["mbytes", "short"],
       "yaxes": [
         {
           "format": "bytes",
@@ -2501,10 +2471,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "mbytes",
-        "short"
-      ],
+      "y_formats": ["mbytes", "short"],
       "yaxes": [
         {
           "format": "bytes",
@@ -2919,10 +2886,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "short",
-        "short"
-      ],
+      "y_formats": ["short", "short"],
       "yaxes": [
         {
           "format": "short",
@@ -3027,10 +2991,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "ops",
-        "short"
-      ],
+      "y_formats": ["ops", "short"],
       "yaxes": [
         {
           "decimals": null,
@@ -3158,10 +3119,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "short",
-        "short"
-      ],
+      "y_formats": ["short", "short"],
       "yaxes": [
         {
           "format": "bytes",
@@ -3264,10 +3222,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "short",
-        "short"
-      ],
+      "y_formats": ["short", "short"],
       "yaxes": [
         {
           "decimals": 0,
@@ -3380,10 +3335,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "short",
-        "short"
-      ],
+      "y_formats": ["short", "short"],
       "yaxes": [
         {
           "format": "bytes",
@@ -3486,10 +3438,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "short",
-        "short"
-      ],
+      "y_formats": ["short", "short"],
       "yaxes": [
         {
           "decimals": 0,
@@ -3668,17 +3617,7 @@
       "2h",
       "1d"
     ],
-    "time_options": [
-      "5m",
-      "15m",
-      "1h",
-      "6h",
-      "12h",
-      "24h",
-      "2d",
-      "7d",
-      "30d"
-    ]
+    "time_options": ["5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d"]
   },
   "timezone": "browser",
   "title": "JVM (Micrometer)",
