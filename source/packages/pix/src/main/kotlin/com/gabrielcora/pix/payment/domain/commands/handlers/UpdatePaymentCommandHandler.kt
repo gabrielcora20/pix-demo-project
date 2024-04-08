@@ -16,7 +16,7 @@ class UpdatePaymentCommandHandler(
     val paymentWriteRepository: PaymentWriteRepository,
     val paymentReadRepository: PaymentReadRepository,
     var pixKeyHelper: PixKeyHelper,
-) : CommandHandler<UpdatePaymentCommandResult, UpdatePaymentCommand>() {
+) : CommandHandler<UpdatePaymentCommandResult, UpdatePaymentCommand> {
     override suspend fun handle(command: UpdatePaymentCommand): UpdatePaymentCommandResult {
         val paymentToUpdate = paymentReadRepository.findById(command.id)
             ?: throw PaymentNotFoundException("Não foi encontrado nenhum pagamento com o id ${command.id}")

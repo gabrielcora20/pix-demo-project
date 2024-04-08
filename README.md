@@ -25,6 +25,7 @@ A aplicação conta com os seguintes serviços:
 - [Open Telemetry Collector](https://opentelemetry.io/docs/collector/) para o recebimento dos dados de telemetria diretamente da aplicação e realização do envio ao [Grafana Tempo](https://grafana.com/docs/tempo/latest/)
 - [Prometheus](http://localhost:9090) para registro de métricas e acompanhamento dos alertas.
 - [Grafana](https://grafana.com/docs/grafana/latest/) para visualização das informações de observabilidade capturadas de todas as ferramentas ([Grafana Tempo](https://grafana.com/docs/tempo/latest/), [Prometheus](http://localhost:9090), [Grafana Loki](https://grafana.com/docs/loki/latest/))
+- Para os testes unitários, foram utilizadas as bibliotecas [JUnit](https://junit.org/junit4/) e [Mockito](https://site.mockito.org/) (embora os testes unitários tenham concentrado-se na camada de domínio, a replicação para as outras camadas também tem grande relevância e merece atenção).
 - Contêineres gerenciandos via [Docker](https://docs.docker.com/) e [Docker Compose](https://docs.docker.com/compose/).
 
 ## **Instruções de Instalação**

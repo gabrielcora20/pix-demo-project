@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component
 class DeletePaymentCommandHandler(
     val paymentWriteRepository: PaymentWriteRepository,
     val paymentReadRepository: PaymentReadRepository,
-) : CommandHandler<DeletePaymentCommandResult, DeletePaymentCommand>() {
+) : CommandHandler<DeletePaymentCommandResult, DeletePaymentCommand> {
     override suspend fun handle(command: DeletePaymentCommand): DeletePaymentCommandResult {
         val paymentToDelete = paymentReadRepository.findById(command.id)
             ?: throw PaymentNotFoundException("Não foi encontrado nenhum pagamento com o id ${command.id}")

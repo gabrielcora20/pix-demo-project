@@ -17,7 +17,7 @@ class RegisterNewPaymentCommandHandler(
     val paymentWriteRepository: PaymentWriteRepository,
     val paymentReadRepository: PaymentReadRepository,
     var pixKeyHelper: PixKeyHelper,
-) : CommandHandler<RegisterNewPaymentCommandResult, RegisterNewPaymentCommand>() {
+) : CommandHandler<RegisterNewPaymentCommandResult, RegisterNewPaymentCommand> {
     override suspend fun handle(command: RegisterNewPaymentCommand): RegisterNewPaymentCommandResult {
         val paymentToInsert = Payment()
 

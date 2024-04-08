@@ -1,6 +1,6 @@
 package com.gabrielcora.listener.eventlisteners
 
-import com.gabrielcora.listener.mock.paymentEventResponseDtoMock
+import com.gabrielcora.listener.mocks.paymentEventResponseDtoMock
 import nl.altindag.log.LogCaptor
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test

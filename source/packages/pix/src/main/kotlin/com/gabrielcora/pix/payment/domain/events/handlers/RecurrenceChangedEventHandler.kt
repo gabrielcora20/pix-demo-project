@@ -16,7 +16,7 @@ class RecurrenceChangedEventHandler(private val rabbitTemplate: RabbitTemplate) 
 
     @Async
     @EventListener(classes = [RecurrenceChangedEvent::class])
-    fun handleRecurrenceChangedEvent(event: Event) {
+    fun handleRecurrenceChangedEvent(event: RecurrenceChangedEvent) {
         rabbitTemplate.convertAndSend("payment.changes", routingKey, event.payment)
     }
 }

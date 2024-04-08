@@ -29,40 +29,28 @@ dependencies {
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.8.0")
 	implementation("org.reactivestreams:reactive-streams:1.0.4")
 	implementation("io.projectreactor:reactor-core:3.6.4")
-	// https://mvnrepository.com/artifact/io.micrometer/micrometer-registry-prometheus
 	implementation("io.micrometer:micrometer-registry-prometheus:1.12.4")
-	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator
 	implementation("org.springframework.boot:spring-boot-starter-actuator:3.2.4")
-	// https://mvnrepository.com/artifact/io.micrometer/micrometer-registry-otlp
 	runtimeOnly("io.micrometer:micrometer-registry-otlp:1.12.4")
 	implementation("io.opentelemetry:opentelemetry-api:1.31.0")
-	// https://mvnrepository.com/artifact/io.micrometer/micrometer-tracing-bridge-otel
 	implementation("io.micrometer:micrometer-tracing-bridge-otel:1.2.4")
 	implementation("io.opentelemetry:opentelemetry-exporter-otlp:1.31.0")
-	// https://mvnrepository.com/artifact/io.opentelemetry/opentelemetry-exporter-common
 	runtimeOnly("io.opentelemetry:opentelemetry-exporter-common:1.31.0")
-	// https://mvnrepository.com/artifact/io.opentelemetry.instrumentation/opentelemetry-logback-appender-1.0
 	implementation("io.opentelemetry.instrumentation:opentelemetry-logback-appender-1.0:1.31.0-alpha")
 	implementation("io.opentelemetry:opentelemetry-sdk:1.31.0")
-	// https://mvnrepository.com/artifact/io.opentelemetry.instrumentation/opentelemetry-instrumentation-api-semconv
 	implementation("io.opentelemetry.instrumentation:opentelemetry-instrumentation-api-semconv:1.31.0-alpha")
-	// https://mvnrepository.com/artifact/io.opentelemetry/opentelemetry-exporter-otlp-common
 	runtimeOnly("io.opentelemetry:opentelemetry-exporter-otlp-common:1.31.0")
 	implementation("jakarta.validation:jakarta.validation-api:3.0.2")
 	implementation("org.springframework.boot:spring-boot-starter-amqp:3.2.4")
-	// https://mvnrepository.com/artifact/org.aspectj/aspectjweaver
 	implementation("org.aspectj:aspectjweaver:1.9.22")
-	// https://mvnrepository.com/artifact/org.springframework/spring-context
 	implementation("org.springframework:spring-context:6.1.5")
-
 	implementation(project(":pix"))
-
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	// https://mvnrepository.com/artifact/org.mockito/mockito-core
 	testImplementation("org.mockito:mockito-core:5.11.0")
-	// https://mvnrepository.com/artifact/junit/junit
 	testImplementation("junit:junit:4.13.2")
 	testImplementation("io.github.hakky54:logcaptor:2.9.2")
+	testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.0")
 }
 
 tasks.withType<KotlinCompile> {

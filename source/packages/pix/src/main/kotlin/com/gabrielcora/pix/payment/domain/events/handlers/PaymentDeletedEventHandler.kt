@@ -16,7 +16,7 @@ class PaymentDeletedEventHandler(private val rabbitTemplate: RabbitTemplate) {
 
     @Async
     @EventListener(classes = [PaymentDeletedEvent::class])
-    fun handlePaymentDeletedEvent(event: Event) {
+    fun handlePaymentDeletedEvent(event: PaymentDeletedEvent) {
         rabbitTemplate.convertAndSend("payment.changes", routingKey, event.payment)
     }
 }

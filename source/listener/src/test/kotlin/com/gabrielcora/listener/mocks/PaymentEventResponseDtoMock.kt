@@ -1,4 +1,4 @@
-package com.gabrielcora.listener.mock
+package com.gabrielcora.listener.mocks
 
 import com.gabrielcora.listener.dto.DestinationEventResponseDto
 import com.gabrielcora.listener.dto.PaymentEventResponseDto

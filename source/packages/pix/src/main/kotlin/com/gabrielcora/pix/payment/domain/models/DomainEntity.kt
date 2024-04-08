@@ -39,8 +39,4 @@ abstract class DomainEntity {
             .append(id)
             .toHashCode()
     }
-
-    fun getId(): String {
-        return id.toString()
-    }
 }

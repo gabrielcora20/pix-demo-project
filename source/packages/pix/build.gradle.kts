@@ -30,6 +30,11 @@ dependencies {
     implementation("io.projectreactor:reactor-core:3.6.4")
     implementation("org.springframework.boot:spring-boot-starter-amqp:3.2.4")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.mockito:mockito-core:5.11.0")
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("io.github.hakky54:logcaptor:2.9.2")
+    testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.0")
 }
 
 tasks.withType<KotlinCompile> {

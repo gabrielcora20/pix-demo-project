@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component
 class ChangeRecurrenceCommandHandler(
     val paymentWriteRepository: PaymentWriteRepository,
     val paymentReadRepository: PaymentReadRepository,
-) : CommandHandler<ChangeRecurrenceCommandResult, ChangeRecurrenceCommand>() {
+) : CommandHandler<ChangeRecurrenceCommandResult, ChangeRecurrenceCommand> {
     override suspend fun handle(command: ChangeRecurrenceCommand): ChangeRecurrenceCommandResult {
         val paymentToUpdate = paymentReadRepository.findById(command.id)
             ?: throw PaymentNotFoundException("Não foi encontrado nenhum pagamento com o id ${command.id}")

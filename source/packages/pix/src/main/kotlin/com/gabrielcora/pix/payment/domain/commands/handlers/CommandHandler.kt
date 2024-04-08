@@ -2,13 +2,14 @@ package com.gabrielcora.pix.payment.domain.commands.handlers
 
 import com.gabrielcora.pix.payment.domain.commands.Command
 import com.gabrielcora.pix.payment.domain.interfaces.UnitOfWork
+import org.apache.coyote.BadRequestException
 
-abstract class CommandHandler<R, C : Command<R>?> {
-    abstract suspend fun handle(command: C): R
+interface CommandHandler<R, C : Command<R>?> {
+    suspend fun handle(command: C): R
 
     suspend fun commit(unitOfWork: UnitOfWork): Boolean {
         if (!unitOfWork.commit())
-            throw Exception("Erro ao executar uma ou mais operações no servidor")
+            throw BadRequestException("Erro ao executar uma ou mais operações no servidor")
 
         return true
     }
