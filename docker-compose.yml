@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   presentation-primary:
@@ -7,8 +7,6 @@ services:
     build:
       context: source
       dockerfile: presentation/Dockerfile
-    volumes:
-      - ./source/packages:/packages
     depends_on:
       - rabbitmq
       - otel-collector
@@ -25,8 +23,6 @@ services:
     build:
       context: source
       dockerfile: presentation/Dockerfile
-    volumes:
-      - ./source/packages:/packages
     depends_on:
       - rabbitmq
       - otel-collector
@@ -43,8 +39,6 @@ services:
     build:
       context: source
       dockerfile: presentation/Dockerfile
-    volumes:
-      - ./source/packages:/packages
     depends_on:
       - rabbitmq
       - otel-collector
@@ -77,7 +71,7 @@ services:
     image: nginx
     container_name: presentation
     ports:
-      - '8080:8080'
+      - "8080:8080"
     volumes:
       - ./source/presentation/nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
@@ -92,10 +86,8 @@ services:
     build:
       context: source
       dockerfile: listener/Dockerfile
-    volumes:
-      - ./source/packages:/packages
     ports:
-      - '8090:8090'
+      - "8090:8090"
     depends_on:
       - rabbitmq
     deploy:
@@ -181,16 +173,15 @@ services:
         delay: 5s
         window: 120s
 
-
   tempo:
     container_name: tempo
     image: grafana/tempo
-    command: [ "-config.file=/etc/tempo.yaml" ]
+    command: ["-config.file=/etc/tempo.yaml"]
     volumes:
       - ./configuration/tempo/tempo.yaml:/etc/tempo.yaml
     ports:
-      - "3200:3200"   # tempo
-      - "4317"  # otlp grpc
+      - "3200:3200" # tempo
+      - "4317" # otlp grpc
     environment:
       - "TZ=America/Sao_Paulo"
     deploy:
