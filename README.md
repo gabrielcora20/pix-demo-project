@@ -2,25 +2,25 @@
 
 ## **Descrição**
 
-Com o objetivo de cadastrar e consultar registros referentes a pagamentos Pix, desenvolvi o atual projeto com o foco no processamento otimizado e confiável das informações. Em conjunto com os endpoints, foram implementadas ferramentas de observabilidade para prevenção de falhas inesperadas nos clusters.
+Com o objetivo de cadastrar e consultar registros referentes a pagamentos Pix, desenvolvi o atual projeto com o foco no processamento otimizado e confiável das informações. Em conjunto com os _endpoints_, foram implementadas ferramentas de observabilidade para prevenção de falhas inesperadas nos _clusters_.
 
 ### Serviços
 
 A aplicação conta com os seguintes serviços:
 
-- [Conjunto de endpoints para manipulação de pagamentos Pix](http://localhost:8080/swagger-ui/index.html) - Interface em Swagger para utilização dos endpoints.
-- [Grafana](http://localhost:3000) - Local onde as métricas, dashboards e logs podem ser visualizados de forma centralizada.
+- [Conjunto de _endpoints_ para manipulação de pagamentos Pix](http://localhost:8080/swagger-ui/index.html) - Interface em _Swagger_ para utilização dos _endpoints_.
+- [Grafana](http://localhost:3000) - Local onde as métricas, _dashboards_ e _logs_ podem ser visualizados de forma centralizada.
 - [Prometheus](http://localhost:9090) - Aqui é possível visualizar as métricas e alertas de _healthcheck_ (esses dados também podem ser visualizados no [Grafana](http://localhost:3000)).
 
 ### Tecnologias Utilizadas
 
 - Código fonte escrito em [Kotlin](https://kotlinlang.org/) e [Spring Boot 3](https://spring.io/).
 - Optei por desenvolver a solução em um banco de dados [MongoDB](https://www.mongodb.com/) por se tratar de apenas um domínio sem relacionamentos.
-- Tratativa de Log utilizando [Grafana Loki](https://grafana.com/docs/loki/latest/).
+- Tratativa de _Log_ utilizando [Grafana Loki](https://grafana.com/docs/loki/latest/).
 - Desenvolvimento da solução em microserviços, diminuindo a chance de indisponibilidade.
-- Arquitetura em Camadas (Application, Domain, Infra), utilizando o padrão CQRS, com o objetivo de separar as operações de escrita e leitura, corroborando para a elaboração de um código potencialmente escalável a longo prazo.
-- Event Driven para o disparo de eventos nas alterações realizadas pelo sistema. Além de garantir tratativas especialistas para cada tipo distinto de evento.
-- Orquestração dos microserviços implementada com load balancer em [NgInx](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/) gerenciando qual dos quatro clusters deverá ser chamado.
+- Arquitetura em Camadas (_Application_, _Domain_, _Infra_), utilizando o padrão CQRS, com o objetivo de separar as operações de escrita e leitura, corroborando para a elaboração de um código potencialmente escalável a longo prazo.
+- _Event Driven_ para o disparo de eventos nas alterações realizadas pelo sistema. Além de garantir tratativas especialistas para cada tipo distinto de evento.
+- Orquestração dos microserviços implementada com _load balancer_ em [NgInx](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/) gerenciando qual dos quatro clusters deverá ser chamado.
 - [Grafana Tempo](https://grafana.com/docs/tempo/latest/) para manipulação de dados de telemetria.
 - [Open Telemetry Collector](https://opentelemetry.io/docs/collector/) para o recebimento dos dados de telemetria diretamente da aplicação e realização do envio ao [Grafana Tempo](https://grafana.com/docs/tempo/latest/)
 - [Prometheus](http://localhost:9090) para registro de métricas e acompanhamento dos alertas.
