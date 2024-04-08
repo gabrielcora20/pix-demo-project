@@ -49,3 +49,25 @@ A aplicação conta com os seguintes serviços:
   ```sh
   docker-compose up -d --build
   ```
+
+## Credenciais de acesso
+
+### [Grafana](http://localhost:3000)
+
+```sh
+  usuario: pix
+  senha: bj0uIVfZAj7O5y94gC1yVPStPfw5xFxQpburWjvUIgnYeFxs7L
+```
+
+### [MongoDB](http://localhost:27017)
+
+```sh
+  String de conexão: mongodb://pix:N5Hn3cHgeP27JGlt7g4ASy6O8zXLNm228sjKxEn8@localhost:27017/pix?authSource=admin
+```
+
+### [RabbitMQ](http://localhost:15672)
+
+```sh
+  usuario: pix
+  senha:  ZiU42veV7Ud48A0dyb9ASgYsHbR6Un
+```
