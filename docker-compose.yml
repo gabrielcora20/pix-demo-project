@@ -79,7 +79,6 @@ services:
     image: nginx
     build: configuration/nginx
     container_name: presentation
-    #command: /bin/bash -c "./etc/nginx/start.sh"
     ports:
       - "80:80"
     volumes:

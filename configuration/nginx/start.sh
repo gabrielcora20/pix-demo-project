@@ -10,7 +10,7 @@ check_health() {
 }
 
 wait_for_healthchecks() {
-    echo "Aguardando containers dependentes..."
+    echo "Aguardando containeres dependentes..."
     for container in "$@"; do
         echo "Verificando healthcheck para $container..."
         while ! check_health "$container"; do
@@ -18,7 +18,7 @@ wait_for_healthchecks() {
         done
         echo "$container está pronto."
     done
-    echo "Todos os containers estão prontos. Iniciando o Nginx..."
+    echo "Todos os containeres estão prontos. Iniciando o Nginx..."
 }
 
 containers=("presentation-primary" "presentation-secondary" "presentation-tertiary" "presentation-quaternary")
