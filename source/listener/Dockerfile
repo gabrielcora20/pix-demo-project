@@ -3,6 +3,7 @@ USER root
 WORKDIR /builder
 COPY . .
 WORKDIR /builder/listener
+RUN gradle wrapper --gradle-version 8.7
 RUN ./gradlew build
 
 FROM openjdk:21-slim
