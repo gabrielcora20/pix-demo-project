@@ -77,11 +77,14 @@ services:
 
   nginx:
     image: nginx
+    build: configuration/nginx
     container_name: presentation
+    #command: /bin/bash -c "./etc/nginx/start.sh"
     ports:
       - "80:80"
     volumes:
       - ./source/presentation/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./configuration/nginx/start.sh:/etc/nginx/start.sh:ro
     depends_on:
       - presentation-primary
       - presentation-secondary
